@@ -11,7 +11,7 @@ export function DashboardShell({
 }: DashboardShellProps) {
   return (
     <div className="flex h-screen">
-      <div className="hidden md:flex">{sidebar}</div>
+      <div className="hidden lg:flex">{sidebar}</div>
 
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="md:hidden">{mobileTopbar}</div>
