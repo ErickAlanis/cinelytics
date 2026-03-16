@@ -1,6 +1,7 @@
+import { AffinityMixWidget } from '../widgets/AffinityMixWidget'
+import { GenreTrendsWidget } from '../widgets/GenreTrendsWidget'
 import { DashboardHeader } from './DashboardHeader'
 import { DashboardMetrics } from './DashboardMetrics'
-import { GenreTrendsWidget } from '../widgets/GenreTrendsWidget'
 
 export function DashboardContent() {
   return (
@@ -8,8 +9,9 @@ export function DashboardContent() {
       <DashboardHeader />
       <DashboardMetrics />
 
-      <section className="grid grid-cols-12 gap-6">
+      <section className="mb-10 grid grid-cols-12 gap-6">
         <GenreTrendsWidget />
+        <AffinityMixWidget />
       </section>
     </>
   )
