@@ -1,5 +1,6 @@
 import { DashboardHeader } from './DashboardHeader'
 import { DashboardMetrics } from './DashboardMetrics'
+import { GenreTrendsWidget } from '../widgets/GenreTrendsWidget'
 
 export function DashboardContent() {
   return (
@@ -7,8 +8,8 @@ export function DashboardContent() {
       <DashboardHeader />
       <DashboardMetrics />
 
-      <section className="rounded-3xl border border-slate-800 bg-slate-950/30 p-8 text-slate-400">
-        Dashboard widgets placeholder
+      <section className="grid grid-cols-12 gap-6">
+        <GenreTrendsWidget />
       </section>
     </>
   )
