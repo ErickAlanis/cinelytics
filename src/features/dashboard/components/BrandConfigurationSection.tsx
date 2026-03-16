@@ -1,4 +1,13 @@
-export function BrandConfigurationSection() {
+import { getGenreNameById } from '../../../utils/getGenreNameById'
+import type { BrandProfile } from '../../../types/brand'
+
+type BrandConfigurationSectionProps = {
+  brandProfile: BrandProfile
+}
+
+export function BrandConfigurationSection({
+  brandProfile,
+}: BrandConfigurationSectionProps) {
   return (
     <section>
       <h2 className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-600">
@@ -14,16 +23,12 @@ export function BrandConfigurationSection() {
             Género Primario
           </label>
 
-          <select
+          <input
             id="primary-genre"
-            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none ring-indigo-500 focus:ring-2"
-            defaultValue="18"
-          >
-            <option value="28">Action</option>
-            <option value="878">Science Fiction</option>
-            <option value="18">Drama</option>
-            <option value="16">Animation</option>
-          </select>
+            value={getGenreNameById(brandProfile.primaryGenre)}
+            readOnly
+            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
+          />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -34,16 +39,12 @@ export function BrandConfigurationSection() {
             Género Secundario 1
           </label>
 
-          <select
+          <input
             id="secondary-genre-1"
-            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none ring-indigo-500 focus:ring-2"
-            defaultValue="10751"
-          >
-            <option value="12">Adventure</option>
-            <option value="10751">Family</option>
-            <option value="18">Drama</option>
-            <option value="14">Fantasy</option>
-          </select>
+            value={getGenreNameById(brandProfile.secondaryGenres[0])}
+            readOnly
+            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
+          />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -54,16 +55,12 @@ export function BrandConfigurationSection() {
             Género Secundario 2
           </label>
 
-          <select
+          <input
             id="secondary-genre-2"
-            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none ring-indigo-500 focus:ring-2"
-            defaultValue="35"
-          >
-            <option value="53">Thriller</option>
-            <option value="35">Comedy</option>
-            <option value="28">Action</option>
-            <option value="36">History</option>
-          </select>
+            value={getGenreNameById(brandProfile.secondaryGenres[1])}
+            readOnly
+            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
+          />
         </div>
 
         <p className="pt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-600">
