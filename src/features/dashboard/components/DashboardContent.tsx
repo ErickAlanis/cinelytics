@@ -1,6 +1,7 @@
 import { AffinityMixWidget } from '../widgets/AffinityMixWidget'
 import { GenreTrendsWidget } from '../widgets/GenreTrendsWidget'
 import { MovieAnniversariesWidget } from '../widgets/MovieAnniversariesWidget'
+import { TalentCompatibilityWidget } from '../widgets/TalentCompatibilityWidget'
 import { UpcomingReleasesWidget } from '../widgets/UpcomingReleasesWidget'
 import { DashboardHeader } from './DashboardHeader'
 import { DashboardMetrics } from './DashboardMetrics'
@@ -20,6 +21,8 @@ export function DashboardContent() {
         <UpcomingReleasesWidget />
         <MovieAnniversariesWidget />
       </section>
+
+      <TalentCompatibilityWidget />
     </>
   )
 }
