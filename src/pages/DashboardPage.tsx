@@ -31,7 +31,7 @@ export function DashboardPage() {
       }
       mobileTopbar={<MobileTopbar />}
     >
-      <DashboardContent />
+      <DashboardContent activeBrandProfile={activeBrandProfile} />
     </DashboardShell>
   )
 }
