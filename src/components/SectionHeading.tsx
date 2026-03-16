@@ -11,7 +11,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={className}>
-      <h3 className="text-lg font-bold tracking-tight text-slate-50">
+      <h3 className="text-4xl font-bold tracking-tight text-slate-50">
         {title}
       </h3>
 
