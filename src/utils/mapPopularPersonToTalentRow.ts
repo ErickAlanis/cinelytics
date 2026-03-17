@@ -36,8 +36,6 @@ export function mapPopularPersonToTalentRow(
 ): PopularTalentRow {
   const strongGenreIds = getStrongGenreIdsFromCredits(credits)
   const affinityScore = calculateAffinityScore(strongGenreIds, brandProfile)
-  console.log (person);
-  console.log (strongGenreIds);
   const affinityPercentage = getAffinityPercentage(affinityScore)
 
   return {
