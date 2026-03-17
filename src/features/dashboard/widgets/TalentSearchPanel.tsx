@@ -1,9 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Card } from '../../../components/Card'
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
 import type { BrandProfile } from '../../../types/brand'
-import { getActorSearchResult } from '../../../utils/getActorSearchResult'
-import { mockActors } from '../../../constants/mockContent'
+import type { TmdbPerson } from '../../../types/tmdb'
+import { getActorSearchResultFromTmdb } from '../../../utils/getActorSearchResultFromTmdb'
+import { useActorMovieCredits } from '../hooks/useActorMovieCredits'
+import { useDebouncedValue } from '../../../hooks/useDebouncedValue'
 import { useSearchActors } from '../hooks/useSearchActors'
+
 
 type TalentSearchPanelProps = {
   activeBrandProfile: BrandProfile
@@ -13,29 +17,36 @@ export function TalentSearchPanel({
   activeBrandProfile,
 }: TalentSearchPanelProps) {
   const [searchValue, setSearchValue] = useState('Ryan Gosling')
-  const [selectedActorName, setSelectedActorName] = useState('Ryan Gosling')
+  const [selectedActor, setSelectedActor] = useState<TmdbPerson | null>(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
+  const debouncedSearchValue = useDebouncedValue(searchValue, 300)
   const containerRef = useRef<HTMLDivElement | null>(null)
 
-  const { actors, isLoading, errorMessage } = useSearchActors(searchValue)
-
-  const selectedActor = useMemo(() => {
-    return (
-      mockActors.find(
-        (actor) => actor.name.toLowerCase() === selectedActorName.toLowerCase(),
-      ) ?? mockActors[0]
-    )
-  }, [selectedActorName])
+  const { actors, isLoading, errorMessage } = useSearchActors(debouncedSearchValue)
+  const {
+    credits,
+    isLoading: isLoadingCredits,
+    errorMessage: creditsErrorMessage,
+  } = useActorMovieCredits(selectedActor?.id ?? 0)
 
   const searchResult = useMemo(() => {
-    return getActorSearchResult(selectedActor, activeBrandProfile)
-  }, [selectedActor, activeBrandProfile])
+    if (!selectedActor || credits.length === 0) {
+      return null
+    }
+
+    return getActorSearchResultFromTmdb(
+      selectedActor,
+      credits,
+      activeBrandProfile,
+    )
+  }, [selectedActor, credits, activeBrandProfile])
 
   const shouldShowDropdown =
     isDropdownOpen &&
-    searchValue.trim().length > 0 &&
+    debouncedSearchValue.trim().length >= 2 &&
     (actors.length > 0 || isLoading || Boolean(errorMessage))
 
   useEffect(() => {
@@ -60,18 +71,30 @@ export function TalentSearchPanel({
     setHighlightedIndex(-1)
   }, [searchValue])
 
-  function selectActor(actorName: string) {
-    setSelectedActorName(actorName)
-    setSearchValue(actorName)
-    setIsDropdownOpen(false)
-    setHighlightedIndex(-1)
-  }
+  useEffect(() => {
+    if (!selectedActor && actors.length > 0) {
+      setSelectedActor(actors[0])
+      setSearchValue(actors[0].name)
+    }
+  }, [actors, selectedActor])
+
+function selectActor(actor: TmdbPerson) {
+  setSelectedActor(actor)
+  setSearchValue(actor.name)
+  setIsDropdownOpen(false)
+  setHighlightedIndex(-1)
+
+  requestAnimationFrame(() => {
+    inputRef.current?.focus()
+    inputRef.current?.select()
+  })
+}
 
   function handleSearch() {
     const matchedActor = actors[0]
 
     if (matchedActor) {
-      selectActor(matchedActor.name)
+      selectActor(matchedActor)
     }
   }
 
@@ -106,7 +129,7 @@ export function TalentSearchPanel({
 
     if (event.key === 'Enter' && highlightedIndex >= 0) {
       event.preventDefault()
-      selectActor(actors[highlightedIndex].name)
+      selectActor(actors[highlightedIndex])
     }
 
     if (event.key === 'Escape') {
@@ -129,6 +152,7 @@ export function TalentSearchPanel({
           <div ref={containerRef} className="relative flex-1">
             <input
               id="actor-search"
+              ref={inputRef}
               type="search"
               placeholder="Ej. Ryan Gosling"
               value={searchValue}
@@ -136,7 +160,10 @@ export function TalentSearchPanel({
                 setSearchValue(event.target.value)
                 setIsDropdownOpen(true)
               }}
-              onFocus={() => setIsDropdownOpen(true)}
+              onFocus={(event) => {
+                setIsDropdownOpen(true)
+                event.currentTarget.select()
+              }}
               onKeyDown={handleInputKeyDown}
               autoComplete="off"
               aria-autocomplete="list"
@@ -173,7 +200,7 @@ export function TalentSearchPanel({
                       role="option"
                       aria-selected={highlightedIndex === index}
                       onMouseDown={(event) => event.preventDefault()}
-                      onClick={() => selectActor(actor.name)}
+                      onClick={() => selectActor(actor)}
                       className={`block w-full px-4 py-3 text-left text-sm transition-colors ${
                         highlightedIndex === index
                           ? 'bg-slate-800 text-slate-100'
@@ -201,42 +228,59 @@ export function TalentSearchPanel({
         </div>
       </form>
 
-      <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-12">
-        <div className="md:col-span-4">
-          <div className="text-sm font-black text-slate-50">
-            {searchResult.name}
-          </div>
-          <div className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">
-            Match destacado
-          </div>
+      {isLoadingCredits ? (
+        <WidgetStateMessage
+          title="Cargando filmografía..."
+          description="Estamos calculando los géneros dominantes del actor."
+        />
+      ) : creditsErrorMessage ? (
+        <WidgetStateMessage
+          title="No se pudo cargar la filmografía"
+          description={creditsErrorMessage}
+        />
+      ) : !searchResult ? (
+        <WidgetStateMessage
+          title="Selecciona un actor"
+          description="Busca un actor para calcular su afinidad con la marca."
+        />
+      ) : (
+        <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <div className="text-sm font-black text-slate-50">
+              {searchResult.name}
+            </div>
+            <div className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">
+              Match destacado
+            </div>
 
-          <div className="mt-4 inline-flex flex-col rounded-2xl border border-indigo-500/20 bg-indigo-500/10 px-4 py-3">
-            <span className="text-3xl font-black text-indigo-400">
-              {searchResult.affinityPercentage}%
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-              Afinidad
-            </span>
-          </div>
-        </div>
-
-        <div className="md:col-span-8">
-          <div className="mb-4 flex flex-wrap gap-2">
-            {searchResult.strongGenres.map((genre) => (
-              <span
-                key={genre}
-                className="rounded-lg bg-slate-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-300"
-              >
-                {genre}
+            <div className="mt-4 inline-flex flex-col rounded-2xl border border-indigo-500/20 bg-indigo-500/10 px-4 py-3">
+              <span className="text-3xl font-black text-indigo-400">
+                {searchResult.affinityPercentage}%
               </span>
-            ))}
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                Afinidad
+              </span>
+            </div>
           </div>
 
-          <p className="text-sm italic leading-relaxed text-indigo-300">
-            Insight: {searchResult.insight}
-          </p>
+          <div className="md:col-span-8">
+            <div className="mb-4 flex flex-wrap gap-2">
+              {searchResult.strongGenres.map((genre) => (
+                <span
+                  key={genre}
+                  className="rounded-lg bg-slate-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-300"
+                >
+                  {genre}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-sm italic leading-relaxed text-indigo-300">
+              Insight: {searchResult.insight}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </Card>
   )
 }

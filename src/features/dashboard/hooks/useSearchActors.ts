@@ -14,8 +14,12 @@ export function useSearchActors(query: string): UseSearchActorsResult {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!query.trim()) {
+    const trimmedQuery = query.trim()
+
+    if (trimmedQuery.length < 2) {
       setActors([])
+      setIsLoading(false)
+      setErrorMessage(null)
       return
     }
 
@@ -26,8 +30,7 @@ export function useSearchActors(query: string): UseSearchActorsResult {
         setIsLoading(true)
         setErrorMessage(null)
 
-        const results = await searchPeople(query, controller.signal)
-
+        const results = await searchPeople(trimmedQuery, controller.signal)
         setActors(results.slice(0, 5))
       } catch (error) {
         if (!controller.signal.aborted) {

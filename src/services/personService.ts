@@ -1,5 +1,9 @@
 import { tmdbGet } from './tmdbClient'
-import type { TmdbPaginatedResponse, TmdbPerson } from '../types/tmdb'
+import type {
+  TmdbPaginatedResponse,
+  TmdbPerson,
+  TmdbPersonMovieCreditsResponse,
+} from '../types/tmdb'
 
 export async function searchPeople(
   query: string,
@@ -22,4 +26,14 @@ export async function searchPeople(
   )
 
   return response.results
+}
+
+export async function getPersonMovieCredits(
+  personId: number,
+  signal?: AbortSignal,
+): Promise<TmdbPersonMovieCreditsResponse> {
+  return tmdbGet<TmdbPersonMovieCreditsResponse>(
+    `/person/${personId}/movie_credits`,
+    { signal },
+  )
 }

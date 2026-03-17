@@ -22,3 +22,16 @@ export type TmdbPaginatedResponse<T> = {
   total_pages: number
   total_results: number
 }
+
+export type TmdbPersonMovieCredit = {
+  id: number
+  title: string
+  genre_ids: number[]
+  popularity: number
+  release_date?: string
+}
+
+export type TmdbPersonMovieCreditsResponse = {
+  cast: TmdbPersonMovieCredit[]
+  crew: TmdbPersonMovieCredit[]
+}
