@@ -21,7 +21,7 @@ export function DashboardContent({
 
       <section className="mb-10 grid grid-cols-12 gap-6">
         <GenreTrendsWidget activeBrandProfile={activeBrandProfile} />
-        <AffinityMixWidget />
+        <AffinityMixWidget activeBrandProfile={activeBrandProfile} />
       </section>
 
       <section className="grid grid-cols-12 gap-6">

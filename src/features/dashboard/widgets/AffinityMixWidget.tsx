@@ -1,10 +1,22 @@
 import { Card } from '../../../components/Card'
 import { WidgetHeader } from '../../../components/WidgetHeader'
+import type { BrandProfile } from '../../../types/brand'
+import { getAffinityMixData } from '../../../utils/getAffinityMixData'
+import { getDonutStrokeOffset } from '../../../utils/getDonutStrokeOffset'
 
-export function AffinityMixWidget() {
+type AffinityMixWidgetProps = {
+  activeBrandProfile: BrandProfile
+}
+
+export function AffinityMixWidget({
+  activeBrandProfile,
+}: AffinityMixWidgetProps) {
+  const mixData = getAffinityMixData(activeBrandProfile)
+  const strokeDashoffset = getDonutStrokeOffset(mixData.brandFitScore)
+
   return (
     <Card className="col-span-12 flex flex-col items-center p-8 lg:col-span-4">
-      <WidgetHeader title="Mix de Afinidad"/>
+      <WidgetHeader title="Mix de Afinidad" />
 
       <div className="relative mb-8 h-48 w-48">
         <svg className="h-full w-full -rotate-90">
@@ -24,7 +36,7 @@ export function AffinityMixWidget() {
             strokeWidth="16"
             fill="transparent"
             strokeDasharray="502"
-            strokeDashoffset="90"
+            strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
           />
           <defs>
@@ -42,21 +54,40 @@ export function AffinityMixWidget() {
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-black text-slate-50">82%</span>
+          <span className="text-4xl font-black text-slate-50">
+            {mixData.brandFitScore}%
+          </span>
           <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
             Brand Fit
           </span>
         </div>
       </div>
 
-      <div className="w-full space-y-2">
+      <div className="w-full space-y-4">
         <div className="flex justify-between text-xs font-bold text-slate-400">
-          <span>Emocional</span>
-          <span>High</span>
+          <span>{mixData.descriptorLabel}</span>
+          <span>{mixData.descriptorLevel}</span>
         </div>
 
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
-          <div className="h-full w-[82%] bg-gradient-to-r from-indigo-500 to-purple-500" />
+          <div
+            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
+            style={{ width: `${mixData.brandFitScore}%` }}
+          />
+        </div>
+
+        <div className="flex flex-wrap gap-2 pt-1">
+          <span className="rounded-lg bg-slate-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-300">
+            {mixData.primaryGenreLabel}
+          </span>
+          {mixData.secondaryGenreLabels.map((genreLabel) => (
+            <span
+              key={genreLabel}
+              className="rounded-lg bg-slate-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-300"
+            >
+              {genreLabel}
+            </span>
+          ))}
         </div>
       </div>
     </Card>
