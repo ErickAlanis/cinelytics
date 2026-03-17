@@ -25,7 +25,7 @@ export function DashboardContent({
       </section>
 
       <section className="grid grid-cols-12 gap-6">
-        <UpcomingReleasesWidget />
+        <UpcomingReleasesWidget activeBrandProfile={activeBrandProfile} />
         <MovieAnniversariesWidget />
       </section>
 
