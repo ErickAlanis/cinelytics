@@ -3,18 +3,22 @@ import { TableSkeleton } from '../../../components/TableSkeleton'
 import { WidgetHeader } from '../../../components/WidgetHeader'
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
 import type { BrandProfile } from '../../../types/brand'
+import type { MovieItem } from '../../../types/content'
 import { getUpcomingReleaseRows } from '../../../utils/getUpcomingReleaseRows'
-import { useUpcomingMovies } from '../hooks/useUpcomingMovies'
 
 type UpcomingReleasesWidgetProps = {
   activeBrandProfile: BrandProfile
+  movies: MovieItem[]
+  isLoading: boolean
+  errorMessage: string | null
 }
 
 export function UpcomingReleasesWidget({
   activeBrandProfile,
+  movies,
+  isLoading,
+  errorMessage,
 }: UpcomingReleasesWidgetProps) {
-  const { movies, isLoading, errorMessage } = useUpcomingMovies()
-
   const releaseRows = getUpcomingReleaseRows(movies, activeBrandProfile, 1)
 
   return (

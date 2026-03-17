@@ -1,23 +1,26 @@
 import { Card } from '../../../components/Card'
+import { ChartSkeleton } from '../../../components/ChartSkeleton'
 import { PillBadge } from '../../../components/PillBadge'
 import { WidgetHeader } from '../../../components/WidgetHeader'
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
-import { ChartSkeleton } from '../../../components/ChartSkeleton'
 import type { BrandProfile } from '../../../types/brand'
+import type { MovieItem } from '../../../types/content'
 import { getGenreTrendData } from '../../../utils/getGenreTrendData'
 import { getGenreTrendInsight } from '../../../utils/getGenreTrendInsight'
-import { useTrendingMovies } from '../hooks/useTrendingMovies'
-
 
 type GenreTrendsWidgetProps = {
   activeBrandProfile: BrandProfile
+  movies: MovieItem[]
+  isLoading: boolean
+  errorMessage: string | null
 }
 
 export function GenreTrendsWidget({
   activeBrandProfile,
+  movies,
+  isLoading,
+  errorMessage,
 }: GenreTrendsWidgetProps) {
-  const { movies, isLoading, errorMessage } = useTrendingMovies()
-
   const trendItems = getGenreTrendData(movies, activeBrandProfile)
   const insight = getGenreTrendInsight(activeBrandProfile)
 
