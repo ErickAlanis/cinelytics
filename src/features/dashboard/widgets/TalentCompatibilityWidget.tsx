@@ -21,7 +21,7 @@ export function TalentCompatibilityWidget({
             className="mb-6"
           />
 
-          <TalentSearchPanel />
+          <TalentSearchPanel activeBrandProfile={activeBrandProfile} />
         </div>
 
         <div className="xl:col-span-5">
