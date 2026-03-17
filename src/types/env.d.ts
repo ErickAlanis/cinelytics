@@ -1,0 +1,9 @@
+interface ImportMetaEnv {
+  readonly VITE_TMDB_API_BASE_URL: string
+  readonly VITE_TMDB_IMAGE_BASE_URL: string
+  readonly VITE_TMDB_READ_ACCESS_TOKEN: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
