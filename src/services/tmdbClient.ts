@@ -12,7 +12,13 @@ function buildUrl(
   path: string,
   query?: Record<string, string | number | boolean | undefined>,
 ): string {
-  const url = new URL(path, TMDB_API_BASE_URL)
+  const normalizedBaseUrl = TMDB_API_BASE_URL.endsWith('/')
+    ? TMDB_API_BASE_URL
+    : `${TMDB_API_BASE_URL}/`
+
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path
+
+  const url = new URL(normalizedPath, normalizedBaseUrl)
 
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
@@ -33,7 +39,7 @@ export async function tmdbGet<T>(
     method: 'GET',
     headers: {
       Authorization: `Bearer ${TMDB_READ_ACCESS_TOKEN}`,
-      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
     signal: options.signal,
   })
