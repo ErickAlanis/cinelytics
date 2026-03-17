@@ -37,3 +37,14 @@ export async function getPersonMovieCredits(
     { signal },
   )
 }
+
+export async function getPopularPeople(
+  signal?: AbortSignal,
+): Promise<TmdbPerson[]> {
+  const response = await tmdbGet<TmdbPaginatedResponse<TmdbPerson>>(
+    '/person/popular',
+    { signal },
+  )
+
+  return response.results
+}
