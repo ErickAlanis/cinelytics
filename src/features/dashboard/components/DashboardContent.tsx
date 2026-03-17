@@ -29,7 +29,7 @@ export function DashboardContent({
         <MovieAnniversariesWidget activeBrandProfile={activeBrandProfile} />
       </section>
 
-      <TalentCompatibilityWidget />
+      <TalentCompatibilityWidget activeBrandProfile={activeBrandProfile} />
     </>
   )
 }

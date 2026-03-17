@@ -1,33 +1,10 @@
-const actorRows = [
-  {
-    actor: 'Ryan Gosling',
-    popularity: 'Alta',
-    strongGenres: 'Drama / Romance',
-    affinity: 76,
-    tone: 'success',
-  },
-  {
-    actor: 'Zendaya',
-    popularity: 'Alta',
-    strongGenres: 'Drama / Sci-Fi',
-    affinity: 71,
-    tone: 'indigo',
-  },
-  {
-    actor: 'Chris Hemsworth',
-    popularity: 'Alta',
-    strongGenres: 'Action / Adventure',
-    affinity: 52,
-    tone: 'amber',
-  },
-  {
-    actor: 'Emma Stone',
-    popularity: 'Media',
-    strongGenres: 'Comedy / Drama',
-    affinity: 74,
-    tone: 'success',
-  },
-]
+import { mockActors } from '../../../constants/mockContent'
+import type { BrandProfile } from '../../../types/brand'
+import { getTalentMatchRows } from '../../../utils/getTalentMatchRows'
+
+type TalentMatchesTableProps = {
+  activeBrandProfile: BrandProfile
+}
 
 function getBadgeClass(tone: string) {
   switch (tone) {
@@ -40,7 +17,11 @@ function getBadgeClass(tone: string) {
   }
 }
 
-export function TalentMatchesTable() {
+export function TalentMatchesTable({
+  activeBrandProfile,
+}: TalentMatchesTableProps) {
+  const actorRows = getTalentMatchRows(mockActors, activeBrandProfile)
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-[760px] w-full text-left text-sm">
@@ -55,7 +36,7 @@ export function TalentMatchesTable() {
 
         <tbody className="divide-y divide-slate-800/50">
           {actorRows.map((row) => (
-            <tr key={row.actor}>
+            <tr key={row.id}>
               <td className="py-4 font-bold text-slate-50">{row.actor}</td>
               <td className="py-4 text-xs text-slate-400">{row.popularity}</td>
               <td className="py-4 text-xs text-slate-400">
@@ -67,7 +48,7 @@ export function TalentMatchesTable() {
                     row.tone,
                   )}`}
                 >
-                  {row.affinity}%
+                  {row.affinityPercentage}%
                 </span>
               </td>
             </tr>

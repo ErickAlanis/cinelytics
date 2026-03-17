@@ -1,9 +1,16 @@
 import { Card } from '../../../components/Card'
 import { SectionHeading } from '../../../components/SectionHeading'
+import type { BrandProfile } from '../../../types/brand'
 import { TalentMatchesTable } from './TalentMatchesTable'
 import { TalentSearchPanel } from './TalentSearchPanel'
 
-export function TalentCompatibilityWidget() {
+type TalentCompatibilityWidgetProps = {
+  activeBrandProfile: BrandProfile
+}
+
+export function TalentCompatibilityWidget({
+  activeBrandProfile,
+}: TalentCompatibilityWidgetProps) {
   return (
     <Card className="mt-10 p-8 lg:p-10">
       <div className="mb-10 grid grid-cols-1 gap-8 xl:grid-cols-12 xl:gap-10">
@@ -41,7 +48,7 @@ export function TalentCompatibilityWidget() {
         </div>
       </div>
 
-      <TalentMatchesTable />
+      <TalentMatchesTable activeBrandProfile={activeBrandProfile} />
     </Card>
   )
 }
