@@ -2,6 +2,7 @@ import type { BrandProfile } from '../types/brand'
 import type { AnniversaryItem } from '../types/content'
 import { calculateAffinityScore } from './calculateAffinityScore'
 import { getAffinityPercentage } from './getAffinityPercentage'
+import { getAnniversaryCampaignIdea } from './getAnniversaryCampaignIdea'
 import { getGenreNameById } from './getGenreNameById'
 import { isRelevantTitle } from './isRelevantTitle'
 
@@ -30,7 +31,7 @@ export function getAnniversaryRows(
         genreLabel: item.genreIds.map(getGenreNameById).join(' / '),
         affinityScore,
         affinityPercentage: getAffinityPercentage(affinityScore),
-        campaignIdea: item.campaignIdea,
+        campaignIdea: getAnniversaryCampaignIdea(item.title, brandProfile),
       }
     })
     .filter((item) => isRelevantTitle(item.affinityScore, minRelevantScore))
