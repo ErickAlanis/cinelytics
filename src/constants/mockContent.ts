@@ -99,4 +99,11 @@ export const mockAnniversaries: AnniversaryItem[] = [
     campaignIdea: 'Colecciones mágicas temáticas.',
     genreIds: [14, 10751],
   },
+  {
+    id: 122,
+    title: 'Toy Story',
+    years: 10,
+    campaignIdea: 'Familia y juegos.',
+    genreIds: [16, 10751],
+  },
 ]
