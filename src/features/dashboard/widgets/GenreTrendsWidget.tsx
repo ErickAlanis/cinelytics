@@ -2,10 +2,12 @@ import { Card } from '../../../components/Card'
 import { PillBadge } from '../../../components/PillBadge'
 import { WidgetHeader } from '../../../components/WidgetHeader'
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
+import { ChartSkeleton } from '../../../components/ChartSkeleton'
 import type { BrandProfile } from '../../../types/brand'
 import { getGenreTrendData } from '../../../utils/getGenreTrendData'
 import { getGenreTrendInsight } from '../../../utils/getGenreTrendInsight'
 import { useTrendingMovies } from '../hooks/useTrendingMovies'
+
 
 type GenreTrendsWidgetProps = {
   activeBrandProfile: BrandProfile
@@ -27,10 +29,7 @@ export function GenreTrendsWidget({
       />
 
       {isLoading ? (
-        <WidgetStateMessage
-          title="Cargando tendencias..."
-          description="Estamos obteniendo señales culturales desde TMDB."
-        />
+        <ChartSkeleton />
       ) : errorMessage ? (
         <WidgetStateMessage
           title="No se pudieron cargar las tendencias"
