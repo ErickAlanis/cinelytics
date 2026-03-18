@@ -62,10 +62,6 @@ export function BrandConfigurationSection({
             className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
           />
         </div>
-
-        <p className="pt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-600">
-          Visible solo para demo
-        </p>
       </div>
     </section>
   );

@@ -18,10 +18,10 @@ export function DashboardHeader({ activeBrandProfile }: DashboardHeaderProps) {
         className="max-w-2xl"
       />
 
-      <StatusBadge className="self-start">
+      {/* <StatusBadge className="self-start">
         <span className="h-2 w-2 rounded-full bg-emerald-500" />
         <span>Demo Review Ready</span>
-      </StatusBadge>
+      </StatusBadge> */}
     </header>
   );
 }
