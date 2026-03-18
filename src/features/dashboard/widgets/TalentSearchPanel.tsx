@@ -4,6 +4,7 @@ import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
 import type { TmdbPerson } from '../../../types/tmdb';
 import { getActorSearchResultFromTmdb } from '../../../utils/getActorSearchResultFromTmdb';
+import { getTmdbImageUrl } from '../../../utils/getTmdbImageUrl';
 import { useActorMovieCredits } from '../hooks/useActorMovieCredits';
 import { useDebouncedValue } from '../../../hooks/useDebouncedValue';
 import { useSearchActors } from '../hooks/useSearchActors';
@@ -237,11 +238,28 @@ function handleSearch() {
       ) : (
         <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-12">
           <div className="md:col-span-4">
-            <div className="text-sm font-black text-slate-50">
-              {searchResult.name}
-            </div>
-            <div className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">
-              Match destacado
+            <div className="flex items-center gap-4">
+              {selectedActor?.profile_path ? (
+                <img
+                  src={getTmdbImageUrl(selectedActor.profile_path, 'w185') ?? ''}
+                  alt={selectedActor.name}
+                  loading="lazy"
+                  className="h-14 w-14 rounded-xl object-cover border border-slate-800 bg-slate-900"
+                />
+              ) : (
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-xs font-bold text-slate-500">
+                  N/A
+                </div>
+              )}
+
+              <div>
+                <div className="text-sm font-black text-slate-50">
+                  {searchResult.name}
+                </div>
+                <div className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">
+                  Match destacado
+                </div>
+              </div>
             </div>
 
             <div className="mt-4 inline-flex flex-col rounded-2xl border border-indigo-500/20 bg-indigo-500/10 px-4 py-3">
