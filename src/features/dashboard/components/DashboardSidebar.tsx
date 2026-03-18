@@ -18,7 +18,7 @@ export function DashboardSidebar({
   onNavigate,
 }: DashboardSidebarProps) {
   return (
-    <div className="w-80 overflow-y-auto">
+    <div className="w-80 overflow-y-auto border-r border-slate-800/50 bg-[#030712]/80 p-6">
       <SidebarBrand />
 
       <div className="space-y-8">

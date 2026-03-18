@@ -16,6 +16,7 @@ export function MobileTopbar({ onOpenSidebar }: MobileTopbarProps) {
       <button
         type="button"
         onClick={onOpenSidebar}
+        aria-label="Abrir menú de marca y navegación"
         className="rounded-lg border border-indigo-500/20 bg-indigo-500/10 px-3 py-2 text-xs font-bold text-indigo-400"
       >
         Marca / Filtros

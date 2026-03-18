@@ -24,6 +24,7 @@ export function SidebarNavigation({ onNavigate }: SidebarNavigationProps) {
             <a
               href={item.href}
               onClick={onNavigate}
+              aria-current={item.active ? 'page' : undefined}
               className={
                 item.active
                   ? 'flex items-center gap-3 rounded-xl border border-indigo-500/20 bg-indigo-500/10 p-3 text-indigo-400'
