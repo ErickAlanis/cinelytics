@@ -2,7 +2,7 @@ import { MetricCard } from '../../../components/MetricCard';
 import type { BrandProfile } from '../../../types/brand';
 import type { MovieItem } from '../../../types/content';
 import { getBrandFitScore } from '../../brand/lib/getBrandFitScore';
-import { getDominantGenre } from '../../../utils/getDominantGenre';
+import { getDominantGenre } from '../../brand/lib/getDominantGenre';
 import { getHighFitTitleCount } from '../../brand/lib/getHighFitTitleCount';
 import { getPrimaryGenreName } from '../../brand/lib/getPrimaryGenreName';
 

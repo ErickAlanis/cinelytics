@@ -1,6 +1,6 @@
-import type { GenreId } from '../types/brand';
-import type { MovieItem } from '../types/content';
-import { getGenreNameById } from './getGenreNameById';
+import type { GenreId } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
+import { getGenreNameById } from '../../../utils/getGenreNameById';
 
 type DominantGenreResult = {
   genreId: GenreId | null;

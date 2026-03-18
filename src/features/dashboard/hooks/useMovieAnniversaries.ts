@@ -5,7 +5,7 @@ import type { MovieItem } from '../../../types/content';
 import { calculateAffinityScore } from '../../brand/lib/calculateAffinityScore';
 import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
 import { getAnniversaryInsight } from '../lib/getAnniversaryInsight';
-import { getAnniversaryTargetDates } from '../../../utils/getAnniversaryTargetDates';
+import { getAnniversaryTargetDates } from '../lib/getAnniversaryTargetDates';
 import { getGenreNames } from '../../../utils/getGenreNames';
 import { mapTmdbMovieToMovieItem } from '../../../services/mappers/mapTmdbMovieToMovieItem';
 
