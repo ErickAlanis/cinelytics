@@ -1,15 +1,15 @@
 type ChartSkeletonProps = {
-  barCount?: number
-  className?: string
-}
+  barCount?: number;
+  className?: string;
+};
 
-const defaultHeights = [78, 66, 54, 42, 30]
+const defaultHeights = [78, 66, 54, 42, 30];
 
 export function ChartSkeleton({
   barCount = 5,
   className = '',
 }: ChartSkeletonProps) {
-  const heights = defaultHeights.slice(0, barCount)
+  const heights = defaultHeights.slice(0, barCount);
 
   return (
     <div className={`animate-pulse ${className}`}>
@@ -30,5 +30,5 @@ export function ChartSkeleton({
 
       <div className="mt-8 h-16 rounded-2xl border border-slate-800 bg-slate-900/40" />
     </div>
-  )
+  );
 }

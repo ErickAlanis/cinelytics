@@ -1,5 +1,5 @@
-import type { ActorItem } from '../types/content'
-import type { TmdbPerson } from '../types/tmdb'
+import type { ActorItem } from '../types/content';
+import type { TmdbPerson } from '../types/tmdb';
 
 export function mapTmdbPersonToActorItem(person: TmdbPerson): ActorItem {
   return {
@@ -7,5 +7,5 @@ export function mapTmdbPersonToActorItem(person: TmdbPerson): ActorItem {
     name: person.name,
     popularity: person.popularity,
     strongGenreIds: [],
-  }
+  };
 }

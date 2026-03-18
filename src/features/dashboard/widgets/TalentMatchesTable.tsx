@@ -1,20 +1,20 @@
-import { TableSkeleton } from '../../../components/TableSkeleton'
-import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
-import type { BrandProfile } from '../../../types/brand'
-import { usePopularTalentMatches } from '../hooks/usePopularTalentMatches'
+import { TableSkeleton } from '../../../components/TableSkeleton';
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
+import type { BrandProfile } from '../../../types/brand';
+import { usePopularTalentMatches } from '../hooks/usePopularTalentMatches';
 
 type TalentMatchesTableProps = {
-  activeBrandProfile: BrandProfile
-}
+  activeBrandProfile: BrandProfile;
+};
 
 function getBadgeClass(tone: string) {
   switch (tone) {
     case 'success':
-      return 'bg-emerald-500/20 text-emerald-400'
+      return 'bg-emerald-500/20 text-emerald-400';
     case 'amber':
-      return 'bg-amber-500/20 text-amber-400'
+      return 'bg-amber-500/20 text-amber-400';
     default:
-      return 'bg-indigo-500/20 text-indigo-400'
+      return 'bg-indigo-500/20 text-indigo-400';
   }
 }
 
@@ -22,10 +22,10 @@ export function TalentMatchesTable({
   activeBrandProfile,
 }: TalentMatchesTableProps) {
   const { rows, isLoading, errorMessage } =
-    usePopularTalentMatches(activeBrandProfile)
+    usePopularTalentMatches(activeBrandProfile);
 
   if (isLoading) {
-    return <TableSkeleton rows={4} columns={4} />
+    return <TableSkeleton rows={4} columns={4} />;
   }
 
   if (errorMessage) {
@@ -34,7 +34,7 @@ export function TalentMatchesTable({
         title="No se pudo cargar el talento compatible"
         description={errorMessage}
       />
-    )
+    );
   }
 
   if (rows.length === 0) {
@@ -43,7 +43,7 @@ export function TalentMatchesTable({
         title="No hay talento disponible"
         description="No encontramos actores con suficiente información para este análisis."
       />
-    )
+    );
   }
 
   return (
@@ -63,7 +63,9 @@ export function TalentMatchesTable({
             <tr key={row.id}>
               <td className="py-4 font-bold text-slate-50">{row.actor}</td>
               <td className="py-4 text-xs text-slate-400">{row.popularity}</td>
-              <td className="py-4 text-xs text-slate-400">{row.strongGenres}</td>
+              <td className="py-4 text-xs text-slate-400">
+                {row.strongGenres}
+              </td>
               <td className="py-4">
                 <span
                   className={`rounded-lg px-3 py-1 text-[10px] font-black uppercase ${getBadgeClass(
@@ -78,5 +80,5 @@ export function TalentMatchesTable({
         </tbody>
       </table>
     </div>
-  )
+  );
 }

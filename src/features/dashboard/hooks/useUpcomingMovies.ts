@@ -1,54 +1,54 @@
-import { useEffect, useState } from 'react'
-import { getUpcomingMovies } from '../../../services/movieService'
-import type { MovieItem } from '../../../types/content'
-import { mapTmdbMovieToMovieItem } from '../../../utils/mapTmdbMovieToMovieItem'
+import { useEffect, useState } from 'react';
+import { getUpcomingMovies } from '../../../services/movieService';
+import type { MovieItem } from '../../../types/content';
+import { mapTmdbMovieToMovieItem } from '../../../utils/mapTmdbMovieToMovieItem';
 
 type UseUpcomingMoviesResult = {
-  movies: MovieItem[]
-  isLoading: boolean
-  errorMessage: string | null
-}
+  movies: MovieItem[];
+  isLoading: boolean;
+  errorMessage: string | null;
+};
 
 export function useUpcomingMovies(): UseUpcomingMoviesResult {
-  const [movies, setMovies] = useState<MovieItem[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [movies, setMovies] = useState<MovieItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const abortController = new AbortController()
+    const abortController = new AbortController();
 
     async function loadUpcomingMovies() {
       try {
-        setIsLoading(true)
-        setErrorMessage(null)
+        setIsLoading(true);
+        setErrorMessage(null);
 
-        const response = await getUpcomingMovies(abortController.signal)
-        const mappedMovies = response.map(mapTmdbMovieToMovieItem)
+        const response = await getUpcomingMovies(abortController.signal);
+        const mappedMovies = response.map(mapTmdbMovieToMovieItem);
 
-        setMovies(mappedMovies)
-      } catch (error) {
+        setMovies(mappedMovies);
+      } catch {
         if (abortController.signal.aborted) {
-          return
+          return;
         }
 
-        setErrorMessage('No se pudieron cargar los próximos estrenos.')
+        setErrorMessage('No se pudieron cargar los próximos estrenos.');
       } finally {
         if (!abortController.signal.aborted) {
-          setIsLoading(false)
+          setIsLoading(false);
         }
       }
     }
 
-    loadUpcomingMovies()
+    loadUpcomingMovies();
 
     return () => {
-      abortController.abort()
-    }
-  }, [])
+      abortController.abort();
+    };
+  }, []);
 
   return {
     movies,
     isLoading,
     errorMessage,
-  }
+  };
 }

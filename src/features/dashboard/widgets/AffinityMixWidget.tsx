@@ -1,21 +1,24 @@
-import { Card } from '../../../components/Card'
-import { WidgetHeader } from '../../../components/WidgetHeader'
-import type { BrandProfile } from '../../../types/brand'
-import { getAffinityMixData } from '../../../utils/getAffinityMixData'
-import { getDonutStrokeOffset } from '../../../utils/getDonutStrokeOffset'
+import { Card } from '../../../components/Card';
+import { WidgetHeader } from '../../../components/WidgetHeader';
+import type { BrandProfile } from '../../../types/brand';
+import { getAffinityMixData } from '../../../utils/getAffinityMixData';
+import { getDonutStrokeOffset } from '../../../utils/getDonutStrokeOffset';
 
 type AffinityMixWidgetProps = {
-  activeBrandProfile: BrandProfile
-}
+  activeBrandProfile: BrandProfile;
+};
 
 export function AffinityMixWidget({
   activeBrandProfile,
 }: AffinityMixWidgetProps) {
-  const mixData = getAffinityMixData(activeBrandProfile)
-  const strokeDashoffset = getDonutStrokeOffset(mixData.brandFitScore)
+  const mixData = getAffinityMixData(activeBrandProfile);
+  const strokeDashoffset = getDonutStrokeOffset(mixData.brandFitScore);
 
   return (
-    <Card id="affinity-mix" className="col-span-12 flex flex-col items-center p-8 lg:col-span-4">
+    <Card
+      id="affinity-mix"
+      className="col-span-12 flex flex-col items-center p-8 lg:col-span-4"
+    >
       <WidgetHeader title="Mix de Afinidad" />
 
       <div className="relative mb-8 h-48 w-48">
@@ -91,5 +94,5 @@ export function AffinityMixWidget({
         </div>
       </div>
     </Card>
-  )
+  );
 }

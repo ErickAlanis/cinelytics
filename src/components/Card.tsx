@@ -1,10 +1,10 @@
-import type { ComponentPropsWithoutRef, PropsWithChildren } from 'react'
+import type { ComponentPropsWithoutRef, PropsWithChildren } from 'react';
 
 type CardProps = PropsWithChildren<
   ComponentPropsWithoutRef<'div'> & {
-    className?: string
+    className?: string;
   }
->
+>;
 
 export function Card({ children, className = '', ...props }: CardProps) {
   return (
@@ -14,5 +14,5 @@ export function Card({ children, className = '', ...props }: CardProps) {
     >
       {children}
     </div>
-  )
+  );
 }

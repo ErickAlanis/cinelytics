@@ -14,5 +14,5 @@ export function SidebarBrand() {
         </p>
       </div>
     </div>
-  )
+  );
 }

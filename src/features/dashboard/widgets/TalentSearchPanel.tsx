@@ -1,53 +1,53 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { Card } from '../../../components/Card'
-import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
-import type { BrandProfile } from '../../../types/brand'
-import type { TmdbPerson } from '../../../types/tmdb'
-import { getActorSearchResultFromTmdb } from '../../../utils/getActorSearchResultFromTmdb'
-import { useActorMovieCredits } from '../hooks/useActorMovieCredits'
-import { useDebouncedValue } from '../../../hooks/useDebouncedValue'
-import { useSearchActors } from '../hooks/useSearchActors'
-
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Card } from '../../../components/Card';
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
+import type { BrandProfile } from '../../../types/brand';
+import type { TmdbPerson } from '../../../types/tmdb';
+import { getActorSearchResultFromTmdb } from '../../../utils/getActorSearchResultFromTmdb';
+import { useActorMovieCredits } from '../hooks/useActorMovieCredits';
+import { useDebouncedValue } from '../../../hooks/useDebouncedValue';
+import { useSearchActors } from '../hooks/useSearchActors';
 
 type TalentSearchPanelProps = {
-  activeBrandProfile: BrandProfile
-}
+  activeBrandProfile: BrandProfile;
+};
 
 export function TalentSearchPanel({
   activeBrandProfile,
 }: TalentSearchPanelProps) {
-  const [searchValue, setSearchValue] = useState('Ryan Gosling')
-  const [selectedActor, setSelectedActor] = useState<TmdbPerson | null>(null)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [highlightedIndex, setHighlightedIndex] = useState(-1)
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const [searchValue, setSearchValue] = useState('');
+  const [selectedActor, setSelectedActor] = useState<TmdbPerson | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const debouncedSearchValue = useDebouncedValue(searchValue, 300)
-  const containerRef = useRef<HTMLDivElement | null>(null)
+  const debouncedSearchValue = useDebouncedValue(searchValue, 300);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const { actors, isLoading, errorMessage } = useSearchActors(debouncedSearchValue)
+  const { actors, isLoading, errorMessage } =
+    useSearchActors(debouncedSearchValue);
   const {
     credits,
     isLoading: isLoadingCredits,
     errorMessage: creditsErrorMessage,
-  } = useActorMovieCredits(selectedActor?.id ?? 0)
+  } = useActorMovieCredits(selectedActor?.id ?? 0);
 
   const searchResult = useMemo(() => {
     if (!selectedActor || credits.length === 0) {
-      return null
+      return null;
     }
 
     return getActorSearchResultFromTmdb(
       selectedActor,
       credits,
       activeBrandProfile,
-    )
-  }, [selectedActor, credits, activeBrandProfile])
+    );
+  }, [selectedActor, credits, activeBrandProfile]);
 
   const shouldShowDropdown =
     isDropdownOpen &&
     debouncedSearchValue.trim().length >= 2 &&
-    (actors.length > 0 || isLoading || Boolean(errorMessage))
+    (actors.length > 0 || isLoading || Boolean(errorMessage));
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -55,86 +55,76 @@ export function TalentSearchPanel({
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
       ) {
-        setIsDropdownOpen(false)
-        setHighlightedIndex(-1)
+        setIsDropdownOpen(false);
+        setHighlightedIndex(-1);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
-  useEffect(() => {
-    setHighlightedIndex(-1)
-  }, [searchValue])
+  function selectActor(actor: TmdbPerson) {
+    setSelectedActor(actor);
+    setSearchValue(actor.name);
+    setIsDropdownOpen(false);
+    setHighlightedIndex(-1);
 
-  useEffect(() => {
-    if (!selectedActor && actors.length > 0) {
-      setSelectedActor(actors[0])
-      setSearchValue(actors[0].name)
-    }
-  }, [actors, selectedActor])
-
-function selectActor(actor: TmdbPerson) {
-  setSelectedActor(actor)
-  setSearchValue(actor.name)
-  setIsDropdownOpen(false)
-  setHighlightedIndex(-1)
-
-  requestAnimationFrame(() => {
-    inputRef.current?.focus()
-    inputRef.current?.select()
-  })
-}
-
-  function handleSearch() {
-    const matchedActor = actors[0]
-
-    if (matchedActor) {
-      selectActor(matchedActor)
-    }
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+      inputRef.current?.select();
+    });
   }
 
+function handleSearch() {
+  const matchedActor =
+    highlightedIndex >= 0 ? actors[highlightedIndex] : actors[0];
+
+  if (matchedActor) {
+    selectActor(matchedActor);
+  }
+}
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    handleSearch()
+    event.preventDefault();
+    handleSearch();
   }
 
   function handleInputKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (!shouldShowDropdown || actors.length === 0) {
       if (event.key === 'ArrowDown' && actors.length > 0) {
-        setIsDropdownOpen(true)
-        setHighlightedIndex(0)
+        setIsDropdownOpen(true);
+        setHighlightedIndex(0);
       }
 
-      return
+      return;
     }
 
     if (event.key === 'ArrowDown') {
-      event.preventDefault()
+      event.preventDefault();
       setHighlightedIndex((current) =>
         current < actors.length - 1 ? current + 1 : 0,
-      )
+      );
     }
 
     if (event.key === 'ArrowUp') {
-      event.preventDefault()
+      event.preventDefault();
       setHighlightedIndex((current) =>
         current > 0 ? current - 1 : actors.length - 1,
-      )
+      );
     }
 
     if (event.key === 'Enter' && highlightedIndex >= 0) {
-      event.preventDefault()
-      selectActor(actors[highlightedIndex])
+      event.preventDefault();
+      selectActor(actors[highlightedIndex]);
     }
 
     if (event.key === 'Escape') {
-      setIsDropdownOpen(false)
-      setHighlightedIndex(-1)
+      setIsDropdownOpen(false);
+      setHighlightedIndex(-1);
     }
   }
 
@@ -157,12 +147,13 @@ function selectActor(actor: TmdbPerson) {
               placeholder="Ej. Ryan Gosling"
               value={searchValue}
               onChange={(event) => {
-                setSearchValue(event.target.value)
-                setIsDropdownOpen(true)
+                setSearchValue(event.target.value);
+                setIsDropdownOpen(true);
+                setHighlightedIndex(-1);
               }}
               onFocus={(event) => {
-                setIsDropdownOpen(true)
-                event.currentTarget.select()
+                setIsDropdownOpen(true);
+                event.currentTarget.select();
               }}
               onKeyDown={handleInputKeyDown}
               autoComplete="off"
@@ -282,5 +273,5 @@ function selectActor(actor: TmdbPerson) {
         </div>
       )}
     </Card>
-  )
+  );
 }

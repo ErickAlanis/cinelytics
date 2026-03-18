@@ -1,24 +1,24 @@
-import { MetricSkeleton } from '../../../components/MetricSkeleton'
-import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
-import type { BrandProfile } from '../../../types/brand'
-import { useDashboardMovies } from '../hooks/useDashboardMovies'
-import { AffinityMixWidget } from '../widgets/AffinityMixWidget'
-import { GenreTrendsWidget } from '../widgets/GenreTrendsWidget'
-import { MovieAnniversariesWidget } from '../widgets/MovieAnniversariesWidget'
-import { TalentCompatibilityWidget } from '../widgets/TalentCompatibilityWidget'
-import { UpcomingReleasesWidget } from '../widgets/UpcomingReleasesWidget'
-import { DashboardHeader } from './DashboardHeader'
-import { DashboardMetrics } from './DashboardMetrics'
+import { MetricSkeleton } from '../../../components/MetricSkeleton';
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
+import type { BrandProfile } from '../../../types/brand';
+import { useDashboardMovies } from '../hooks/useDashboardMovies';
+import { AffinityMixWidget } from '../widgets/AffinityMixWidget';
+import { GenreTrendsWidget } from '../widgets/GenreTrendsWidget';
+import { MovieAnniversariesWidget } from '../widgets/MovieAnniversariesWidget';
+import { TalentCompatibilityWidget } from '../widgets/TalentCompatibilityWidget';
+import { UpcomingReleasesWidget } from '../widgets/UpcomingReleasesWidget';
+import { DashboardHeader } from './DashboardHeader';
+import { DashboardMetrics } from './DashboardMetrics';
 
 type DashboardContentProps = {
-  activeBrandProfile: BrandProfile
-}
+  activeBrandProfile: BrandProfile;
+};
 
 export function DashboardContent({
   activeBrandProfile,
 }: DashboardContentProps) {
   const { trendingMovies, upcomingMovies, isLoading, errorMessage } =
-    useDashboardMovies()
+    useDashboardMovies();
 
   return (
     <>
@@ -82,5 +82,5 @@ export function DashboardContent({
         <TalentCompatibilityWidget activeBrandProfile={activeBrandProfile} />
       </div>
     </>
-  )
+  );
 }

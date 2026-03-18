@@ -1,9 +1,9 @@
-import { getGenreNameById } from '../../../utils/getGenreNameById'
-import type { BrandProfile } from '../../../types/brand'
+import { getGenreNameById } from '../../../utils/getGenreNameById';
+import type { BrandProfile } from '../../../types/brand';
 
 type BrandConfigurationSectionProps = {
-  brandProfile: BrandProfile
-}
+  brandProfile: BrandProfile;
+};
 
 export function BrandConfigurationSection({
   brandProfile,
@@ -68,5 +68,5 @@ export function BrandConfigurationSection({
         </p>
       </div>
     </section>
-  )
+  );
 }

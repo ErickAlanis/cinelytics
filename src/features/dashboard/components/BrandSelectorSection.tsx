@@ -1,10 +1,10 @@
-import { brandProfiles } from '../../../constants/brandProfiles'
-import type { BrandId } from '../../../types/brand'
+import { brandProfiles } from '../../../constants/brandProfiles';
+import type { BrandId } from '../../../types/brand';
 
 type BrandSelectorSectionProps = {
-  activeBrandId: BrandId
-  onBrandChange: (brandId: BrandId) => void
-}
+  activeBrandId: BrandId;
+  onBrandChange: (brandId: BrandId) => void;
+};
 
 export function BrandSelectorSection({
   activeBrandId,
@@ -40,5 +40,5 @@ export function BrandSelectorSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

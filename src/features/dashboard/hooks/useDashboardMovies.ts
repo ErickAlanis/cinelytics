@@ -1,20 +1,20 @@
-import { useMemo } from 'react'
-import type { DashboardMoviesState } from '../types/dashboardData'
-import { useTrendingMovies } from './useTrendingMovies'
-import { useUpcomingMovies } from './useUpcomingMovies'
+import { useMemo } from 'react';
+import type { DashboardMoviesState } from '../types/dashboardData';
+import { useTrendingMovies } from './useTrendingMovies';
+import { useUpcomingMovies } from './useUpcomingMovies';
 
 export function useDashboardMovies(): DashboardMoviesState {
   const {
     movies: trendingMovies,
     isLoading: isTrendingLoading,
     errorMessage: trendingErrorMessage,
-  } = useTrendingMovies()
+  } = useTrendingMovies();
 
   const {
     movies: upcomingMovies,
     isLoading: isUpcomingLoading,
     errorMessage: upcomingErrorMessage,
-  } = useUpcomingMovies()
+  } = useUpcomingMovies();
 
   return useMemo(
     () => ({
@@ -31,5 +31,5 @@ export function useDashboardMovies(): DashboardMoviesState {
       trendingErrorMessage,
       upcomingErrorMessage,
     ],
-  )
+  );
 }

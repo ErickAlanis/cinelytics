@@ -1,6 +1,6 @@
 type MobileTopbarProps = {
-  onOpenSidebar: () => void
-}
+  onOpenSidebar: () => void;
+};
 
 export function MobileTopbar({ onOpenSidebar }: MobileTopbarProps) {
   return (
@@ -22,5 +22,5 @@ export function MobileTopbar({ onOpenSidebar }: MobileTopbarProps) {
         Marca / Filtros
       </button>
     </div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import { Card } from '../../../components/Card'
-import { WidgetHeader } from '../../../components/WidgetHeader'
-import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
-import { mockAnniversaries } from '../../../constants/mockContent'
-import type { BrandProfile } from '../../../types/brand'
-import { getAnniversaryRows } from '../../../utils/getAnniversaryRows'
+import { Card } from '../../../components/Card';
+import { WidgetHeader } from '../../../components/WidgetHeader';
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
+import { mockAnniversaries } from '../../../constants/mockContent';
+import type { BrandProfile } from '../../../types/brand';
+import { getAnniversaryRows } from '../../../utils/getAnniversaryRows';
 
 type MovieAnniversariesWidgetProps = {
-  activeBrandProfile: BrandProfile
-}
+  activeBrandProfile: BrandProfile;
+};
 
 export function MovieAnniversariesWidget({
   activeBrandProfile,
@@ -16,7 +16,7 @@ export function MovieAnniversariesWidget({
     mockAnniversaries,
     activeBrandProfile,
     1,
-  )
+  );
 
   return (
     <Card id="movie-anniversaries" className="col-span-12 p-8 lg:col-span-5">
@@ -48,7 +48,8 @@ export function MovieAnniversariesWidget({
                     index === 0 ? 'text-indigo-400' : 'text-slate-500'
                   }`}
                 >
-                  {index === 0 ? 'Prioritario' : 'Secundario'} · {item.years} años
+                  {index === 0 ? 'Prioritario' : 'Secundario'} · {item.years}{' '}
+                  años
                 </span>
 
                 <h4
@@ -68,5 +69,5 @@ export function MovieAnniversariesWidget({
         </div>
       )}
     </Card>
-  )
+  );
 }

@@ -1,15 +1,20 @@
 type SidebarNavigationProps = {
-  onNavigate?: () => void
-}
+  onNavigate?: () => void;
+};
 
 const navItems = [
   { label: 'Dashboard', icon: '▦', href: '#dashboard-overview', active: true },
   { label: 'Tendencias', icon: '🔥', href: '#genre-trends', active: false },
   { label: 'Afinidad', icon: '◎', href: '#affinity-mix', active: false },
   { label: 'Estrenos', icon: '🎞', href: '#upcoming-releases', active: false },
-  { label: 'Aniversarios', icon: '🕓', href: '#movie-anniversaries', active: false },
+  {
+    label: 'Aniversarios',
+    icon: '🕓',
+    href: '#movie-anniversaries',
+    active: false,
+  },
   { label: 'Talento', icon: '★', href: '#talent-compatibility', active: false },
-]
+];
 
 export function SidebarNavigation({ onNavigate }: SidebarNavigationProps) {
   return (
@@ -38,5 +43,5 @@ export function SidebarNavigation({ onNavigate }: SidebarNavigationProps) {
         ))}
       </ul>
     </nav>
-  )
+  );
 }

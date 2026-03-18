@@ -1,12 +1,9 @@
-import {
-  TMDB_API_BASE_URL,
-  TMDB_READ_ACCESS_TOKEN,
-} from '../constants/tmdb'
+import { TMDB_API_BASE_URL, TMDB_READ_ACCESS_TOKEN } from '../constants/tmdb';
 
 type TmdbRequestOptions = {
-  query?: Record<string, string | number | boolean | undefined>
-  signal?: AbortSignal
-}
+  query?: Record<string, string | number | boolean | undefined>;
+  signal?: AbortSignal;
+};
 
 function buildUrl(
   path: string,
@@ -14,21 +11,21 @@ function buildUrl(
 ): string {
   const normalizedBaseUrl = TMDB_API_BASE_URL.endsWith('/')
     ? TMDB_API_BASE_URL
-    : `${TMDB_API_BASE_URL}/`
+    : `${TMDB_API_BASE_URL}/`;
 
-  const normalizedPath = path.startsWith('/') ? path.slice(1) : path
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
 
-  const url = new URL(normalizedPath, normalizedBaseUrl)
+  const url = new URL(normalizedPath, normalizedBaseUrl);
 
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
       if (value !== undefined && value !== null && value !== '') {
-        url.searchParams.set(key, String(value))
+        url.searchParams.set(key, String(value));
       }
-    })
+    });
   }
 
-  return url.toString()
+  return url.toString();
 }
 
 export async function tmdbGet<T>(
@@ -42,11 +39,11 @@ export async function tmdbGet<T>(
       Accept: 'application/json',
     },
     signal: options.signal,
-  })
+  });
 
   if (!response.ok) {
-    throw new Error(`TMDB request failed: ${response.status}`)
+    throw new Error(`TMDB request failed: ${response.status}`);
   }
 
-  return response.json() as Promise<T>
+  return response.json() as Promise<T>;
 }

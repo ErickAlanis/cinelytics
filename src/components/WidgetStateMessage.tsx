@@ -1,7 +1,7 @@
 type WidgetStateMessageProps = {
-  title: string
-  description?: string
-}
+  title: string;
+  description?: string;
+};
 
 export function WidgetStateMessage({
   title,
@@ -15,5 +15,5 @@ export function WidgetStateMessage({
         <p className="mt-2 text-slate-400">{description}</p>
       ) : null}
     </div>
-  )
+  );
 }

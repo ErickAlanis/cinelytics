@@ -1,4 +1,4 @@
-import type { BrandProfile } from '../types/brand'
+import type { BrandProfile } from '../types/brand';
 
 export const brandProfiles: BrandProfile[] = [
   {
@@ -31,4 +31,4 @@ export const brandProfiles: BrandProfile[] = [
     primaryGenre: 16,
     secondaryGenres: [10751, 14],
   },
-]
+];

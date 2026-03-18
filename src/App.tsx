@@ -1,5 +1,5 @@
-import { AppLayout } from './layouts/AppLayout'
-import { DashboardPage } from './pages/DashboardPage'
+import { AppLayout } from './layouts/AppLayout';
+import { DashboardPage } from './pages/DashboardPage';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <DashboardPage />
       </AppLayout>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

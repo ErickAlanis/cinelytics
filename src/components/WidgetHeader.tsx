@@ -1,16 +1,12 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 type WidgetHeaderProps = {
-  title: string
-  subtitle?: string
-  action?: ReactNode
-}
+  title: string;
+  subtitle?: string;
+  action?: ReactNode;
+};
 
-export function WidgetHeader({
-  title,
-  subtitle,
-  action,
-}: WidgetHeaderProps) {
+export function WidgetHeader({ title, subtitle, action }: WidgetHeaderProps) {
   return (
     <div className="mb-8 flex items-center justify-between gap-4">
       <div>
@@ -25,5 +21,5 @@ export function WidgetHeader({
 
       {action ? <div className="shrink-0">{action}</div> : null}
     </div>
-  )
+  );
 }

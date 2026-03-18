@@ -1,13 +1,13 @@
-import type { BrandId } from '../types/brand'
+import type { BrandId } from '../types/brand';
 
 type BrandKpiSnapshot = {
-  brandFitScore: number
-  dominantGenreShare: string
-  highFitTitles: number
-  topActorMatch: string
-  topActorAffinity: string
-  fitDeltaLabel: string
-}
+  brandFitScore: number;
+  dominantGenreShare: string;
+  highFitTitles: number;
+  topActorMatch: string;
+  topActorAffinity: string;
+  fitDeltaLabel: string;
+};
 
 const brandKpiSnapshots: Record<BrandId, BrandKpiSnapshot> = {
   redbull: {
@@ -50,8 +50,8 @@ const brandKpiSnapshots: Record<BrandId, BrandKpiSnapshot> = {
     topActorAffinity: '72% Afinidad',
     fitDeltaLabel: '+3% vs mes anterior',
   },
-}
+};
 
 export function getBrandKpiSnapshot(brandId: BrandId): BrandKpiSnapshot {
-  return brandKpiSnapshots[brandId]
+  return brandKpiSnapshots[brandId];
 }

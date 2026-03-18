@@ -1,19 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 type DashboardShellProps = {
-  sidebar: React.ReactNode
-  mobileTopbar: React.ReactNode
-  children: React.ReactNode
-  isMobileSidebarOpen: boolean
-  onCloseMobileSidebar: () => void
-}
+  sidebar: React.ReactNode;
+  mobileTopbar: React.ReactNode;
+  children: React.ReactNode;
+  isMobileSidebarOpen: boolean;
+  onCloseMobileSidebar: () => void;
+};
 
 function getFocusableElements(container: HTMLElement): HTMLElement[] {
   return Array.from(
     container.querySelectorAll<HTMLElement>(
       'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])',
     ),
-  ).filter((element) => !element.hasAttribute('disabled'))
+  ).filter((element) => !element.hasAttribute('disabled'));
 }
 
 export function DashboardShell({
@@ -23,47 +23,50 @@ export function DashboardShell({
   isMobileSidebarOpen,
   onCloseMobileSidebar,
 }: DashboardShellProps) {
-  const drawerRef = useRef<HTMLDivElement | null>(null)
+  const drawerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!isMobileSidebarOpen) {
-      document.body.style.overflow = ''
-      return
+      document.body.style.overflow = '';
+      return;
     }
 
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden';
 
-    const drawer = drawerRef.current
-    const focusableElements = drawer ? getFocusableElements(drawer) : []
-    const firstFocusable = focusableElements[0]
-    const lastFocusable = focusableElements[focusableElements.length - 1]
+    const drawer = drawerRef.current;
+    const focusableElements = drawer ? getFocusableElements(drawer) : [];
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
 
-    firstFocusable?.focus()
+    firstFocusable?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
-        onCloseMobileSidebar()
-        return
+        onCloseMobileSidebar();
+        return;
       }
 
       if (event.key === 'Tab' && drawer && focusableElements.length > 0) {
         if (event.shiftKey && document.activeElement === firstFocusable) {
-          event.preventDefault()
-          lastFocusable?.focus()
-        } else if (!event.shiftKey && document.activeElement === lastFocusable) {
-          event.preventDefault()
-          firstFocusable?.focus()
+          event.preventDefault();
+          lastFocusable?.focus();
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === lastFocusable
+        ) {
+          event.preventDefault();
+          firstFocusable?.focus();
         }
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = ''
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isMobileSidebarOpen, onCloseMobileSidebar])
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isMobileSidebarOpen, onCloseMobileSidebar]);
 
   return (
     <div className="flex h-screen">
@@ -103,13 +106,10 @@ export function DashboardShell({
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="lg:hidden">{mobileTopbar}</div>
 
-        <main
-          id="main-content"
-          className="flex-1 overflow-y-auto p-4 md:p-8"
-        >
+        <main id="main-content" className="flex-1 overflow-y-auto p-4 md:p-8">
           {children}
         </main>
       </div>
     </div>
-  )
+  );
 }

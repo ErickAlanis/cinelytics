@@ -1,19 +1,19 @@
-import type { BrandProfile } from '../types/brand'
-import type { AnniversaryItem } from '../types/content'
-import { calculateAffinityScore } from './calculateAffinityScore'
-import { getAffinityPercentage } from './getAffinityPercentage'
-import { getAnniversaryCampaignIdea } from './getAnniversaryCampaignIdea'
-import { getGenreNameById } from './getGenreNameById'
-import { isRelevantTitle } from './isRelevantTitle'
+import type { BrandProfile } from '../types/brand';
+import type { AnniversaryItem } from '../types/content';
+import { calculateAffinityScore } from './calculateAffinityScore';
+import { getAffinityPercentage } from './getAffinityPercentage';
+import { getAnniversaryCampaignIdea } from './getAnniversaryCampaignIdea';
+import { getGenreNameById } from './getGenreNameById';
+import { isRelevantTitle } from './isRelevantTitle';
 
 type AnniversaryRow = {
-  id: number
-  title: string
-  years: number
-  genreLabel: string
-  affinityPercentage: number
-  campaignIdea: string
-}
+  id: number;
+  title: string;
+  years: number;
+  genreLabel: string;
+  affinityPercentage: number;
+  campaignIdea: string;
+};
 
 export function getAnniversaryRows(
   anniversaries: AnniversaryItem[],
@@ -22,7 +22,7 @@ export function getAnniversaryRows(
 ): AnniversaryRow[] {
   return anniversaries
     .map((item) => {
-      const affinityScore = calculateAffinityScore(item.genreIds, brandProfile)
+      const affinityScore = calculateAffinityScore(item.genreIds, brandProfile);
 
       return {
         id: item.id,
@@ -32,9 +32,9 @@ export function getAnniversaryRows(
         affinityScore,
         affinityPercentage: getAffinityPercentage(affinityScore),
         campaignIdea: getAnniversaryCampaignIdea(item.title, brandProfile),
-      }
+      };
     })
     .filter((item) => isRelevantTitle(item.affinityScore, minRelevantScore))
     .sort((a, b) => b.affinityPercentage - a.affinityPercentage)
-    .map(({ affinityScore, ...row }) => row)
+    // .map(({ affinityScore, ...row }) => row);
 }

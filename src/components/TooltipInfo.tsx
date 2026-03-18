@@ -1,7 +1,7 @@
 type TooltipInfoProps = {
-  text: string
-  className?: string
-}
+  text: string;
+  className?: string;
+};
 
 export function TooltipInfo({ text, className = '' }: TooltipInfoProps) {
   return (
@@ -12,5 +12,5 @@ export function TooltipInfo({ text, className = '' }: TooltipInfoProps) {
     >
       i
     </span>
-  )
+  );
 }

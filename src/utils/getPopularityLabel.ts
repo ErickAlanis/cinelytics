@@ -1,11 +1,13 @@
-export function getPopularityLabel(popularity: number): 'Alta' | 'Media' | 'Baja' {
+export function getPopularityLabel(
+  popularity: number,
+): 'Alta' | 'Media' | 'Baja' {
   if (popularity >= 85) {
-    return 'Alta'
+    return 'Alta';
   }
 
   if (popularity >= 70) {
-    return 'Media'
+    return 'Media';
   }
 
-  return 'Baja'
+  return 'Baja';
 }

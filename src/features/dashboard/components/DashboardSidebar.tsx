@@ -1,15 +1,15 @@
-import type { BrandId, BrandProfile } from '../../../types/brand'
-import { BrandConfigurationSection } from './BrandConfigurationSection'
-import { BrandSelectorSection } from './BrandSelectorSection'
-import { SidebarBrand } from './SidebarBrand'
-import { SidebarNavigation } from './SidebarNavigation'
+import type { BrandId, BrandProfile } from '../../../types/brand';
+import { BrandConfigurationSection } from './BrandConfigurationSection';
+import { BrandSelectorSection } from './BrandSelectorSection';
+import { SidebarBrand } from './SidebarBrand';
+import { SidebarNavigation } from './SidebarNavigation';
 
 type DashboardSidebarProps = {
-  activeBrandId: BrandId
-  activeBrandProfile: BrandProfile
-  onBrandChange: (brandId: BrandId) => void
-  onNavigate?: () => void
-}
+  activeBrandId: BrandId;
+  activeBrandProfile: BrandProfile;
+  onBrandChange: (brandId: BrandId) => void;
+  onNavigate?: () => void;
+};
 
 export function DashboardSidebar({
   activeBrandId,
@@ -30,5 +30,5 @@ export function DashboardSidebar({
         <SidebarNavigation onNavigate={onNavigate} />
       </div>
     </div>
-  )
+  );
 }

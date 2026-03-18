@@ -1,18 +1,18 @@
-import { tmdbGet } from './tmdbClient'
+import { tmdbGet } from './tmdbClient';
 import type {
   TmdbPaginatedResponse,
   TmdbPerson,
   TmdbPersonMovieCreditsResponse,
-} from '../types/tmdb'
+} from '../types/tmdb';
 
 export async function searchPeople(
   query: string,
   signal?: AbortSignal,
 ): Promise<TmdbPerson[]> {
-  const trimmedQuery = query.trim()
+  const trimmedQuery = query.trim();
 
   if (!trimmedQuery) {
-    return []
+    return [];
   }
 
   const response = await tmdbGet<TmdbPaginatedResponse<TmdbPerson>>(
@@ -23,9 +23,9 @@ export async function searchPeople(
       },
       signal,
     },
-  )
+  );
 
-  return response.results
+  return response.results;
 }
 
 export async function getPersonMovieCredits(
@@ -35,7 +35,7 @@ export async function getPersonMovieCredits(
   return tmdbGet<TmdbPersonMovieCreditsResponse>(
     `/person/${personId}/movie_credits`,
     { signal },
-  )
+  );
 }
 
 export async function getPopularPeople(
@@ -44,7 +44,7 @@ export async function getPopularPeople(
   const response = await tmdbGet<TmdbPaginatedResponse<TmdbPerson>>(
     '/person/popular',
     { signal },
-  )
+  );
 
-  return response.results
+  return response.results;
 }

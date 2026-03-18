@@ -1,4 +1,4 @@
-import type { ActorItem, AnniversaryItem, MovieItem } from '../types/content'
+import type { ActorItem, AnniversaryItem, MovieItem } from '../types/content';
 
 export const mockTrendingMovies: MovieItem[] = [
   {
@@ -31,7 +31,7 @@ export const mockTrendingMovies: MovieItem[] = [
     genreIds: [12, 28],
     popularity: 66,
   },
-]
+];
 
 export const mockUpcomingMovies: MovieItem[] = [
   {
@@ -55,7 +55,7 @@ export const mockUpcomingMovies: MovieItem[] = [
     popularity: 78,
     releaseDate: '2026-07-04',
   },
-]
+];
 
 export const mockActors: ActorItem[] = [
   {
@@ -82,7 +82,7 @@ export const mockActors: ActorItem[] = [
     popularity: 79,
     strongGenreIds: [35, 18],
   },
-]
+];
 
 export const mockAnniversaries: AnniversaryItem[] = [
   {
@@ -106,4 +106,4 @@ export const mockAnniversaries: AnniversaryItem[] = [
     campaignIdea: 'Familia y juegos.',
     genreIds: [16, 10751],
   },
-]
+];

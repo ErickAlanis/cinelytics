@@ -1,15 +1,15 @@
-import type { PropsWithChildren, ReactNode } from 'react'
-import { Card } from './Card'
-import { TooltipInfo } from './TooltipInfo'
+import type { PropsWithChildren, ReactNode } from 'react';
+import { Card } from './Card';
+import { TooltipInfo } from './TooltipInfo';
 
 type MetricCardProps = PropsWithChildren<{
-  label: string
-  value: ReactNode
-  helperText?: string
-  accentClassName?: string
-  tooltipText?: string
-  className?: string
-}>
+  label: string;
+  value: ReactNode;
+  helperText?: string;
+  accentClassName?: string;
+  tooltipText?: string;
+  className?: string;
+}>;
 
 export function MetricCard({
   label,
@@ -39,5 +39,5 @@ export function MetricCard({
         </div>
       ) : null}
     </Card>
-  )
+  );
 }

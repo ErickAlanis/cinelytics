@@ -1,27 +1,31 @@
-import { MetricCard } from '../../../components/MetricCard'
-import type { BrandProfile } from '../../../types/brand'
-import type { MovieItem } from '../../../types/content'
-import { getBrandKpiSnapshot } from '../../../utils/getBrandKpiSnapshot'
-import { getBrandFitScore } from '../../../utils/getBrandFitScore'
-import { getDominantGenre } from '../../../utils/getDominantGenre'
-import { getHighFitTitleCount } from '../../../utils/getHighFitTitleCount'
+import { MetricCard } from '../../../components/MetricCard';
+import type { BrandProfile } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
+import { getBrandKpiSnapshot } from '../../../utils/getBrandKpiSnapshot';
+import { getBrandFitScore } from '../../../utils/getBrandFitScore';
+import { getDominantGenre } from '../../../utils/getDominantGenre';
+import { getHighFitTitleCount } from '../../../utils/getHighFitTitleCount';
 
 type DashboardMetricsProps = {
-  activeBrandProfile: BrandProfile
-  trendingMovies: MovieItem[]
-  upcomingMovies: MovieItem[]
-}
+  activeBrandProfile: BrandProfile;
+  trendingMovies: MovieItem[];
+  upcomingMovies: MovieItem[];
+};
 
 export function DashboardMetrics({
   activeBrandProfile,
   trendingMovies,
   upcomingMovies,
 }: DashboardMetricsProps) {
-  const snapshot = getBrandKpiSnapshot(activeBrandProfile.id)
+  const snapshot = getBrandKpiSnapshot(activeBrandProfile.id);
 
-  const brandFitScore = getBrandFitScore(trendingMovies, activeBrandProfile)
-  const dominantGenre = getDominantGenre(trendingMovies)
-  const highFitTitles = getHighFitTitleCount(upcomingMovies, activeBrandProfile, 1)
+  const brandFitScore = getBrandFitScore(trendingMovies, activeBrandProfile);
+  const dominantGenre = getDominantGenre(trendingMovies);
+  const highFitTitles = getHighFitTitleCount(
+    upcomingMovies,
+    activeBrandProfile,
+    1,
+  );
 
   return (
     <section className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -47,9 +51,11 @@ export function DashboardMetrics({
 
       <MetricCard
         label="Top Actor Match"
-        value={<span className="text-xl md:text-2xl">{snapshot.topActorMatch}</span>}
+        value={
+          <span className="text-xl md:text-2xl">{snapshot.topActorMatch}</span>
+        }
         helperText={snapshot.topActorAffinity}
       />
     </section>
-  )
+  );
 }

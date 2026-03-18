@@ -1,8 +1,8 @@
-import { Card } from './Card'
+import { Card } from './Card';
 
 type MetricSkeletonProps = {
-  className?: string
-}
+  className?: string;
+};
 
 export function MetricSkeleton({ className = '' }: MetricSkeletonProps) {
   return (
@@ -11,5 +11,5 @@ export function MetricSkeleton({ className = '' }: MetricSkeletonProps) {
       <div className="h-10 w-20 rounded bg-slate-800" />
       <div className="mt-4 h-3 w-24 rounded bg-slate-800" />
     </Card>
-  )
+  );
 }

@@ -1,17 +1,17 @@
-import type { BrandProfile } from '../types/brand'
-import type { ActorItem } from '../types/content'
-import { calculateAffinityScore } from './calculateAffinityScore'
-import { getActorAffinityInsight } from './getActorAffinityInsight'
-import { getAffinityPercentage } from './getAffinityPercentage'
-import { getGenreNames } from './getGenreNames'
+import type { BrandProfile } from '../types/brand';
+import type { ActorItem } from '../types/content';
+import { calculateAffinityScore } from './calculateAffinityScore';
+import { getActorAffinityInsight } from './getActorAffinityInsight';
+import { getAffinityPercentage } from './getAffinityPercentage';
+import { getGenreNames } from './getGenreNames';
 
 type ActorSearchResult = {
-  id: number
-  name: string
-  affinityPercentage: number
-  strongGenres: string[]
-  insight: string
-}
+  id: number;
+  name: string;
+  affinityPercentage: number;
+  strongGenres: string[];
+  insight: string;
+};
 
 export function getActorSearchResult(
   actor: ActorItem,
@@ -20,7 +20,7 @@ export function getActorSearchResult(
   const affinityScore = calculateAffinityScore(
     actor.strongGenreIds,
     brandProfile,
-  )
+  );
 
   return {
     id: actor.id,
@@ -32,5 +32,5 @@ export function getActorSearchResult(
       actor.strongGenreIds,
       brandProfile,
     ),
-  }
+  };
 }

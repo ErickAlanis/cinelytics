@@ -1,12 +1,12 @@
-import { Card } from '../../../components/Card'
-import { SectionHeading } from '../../../components/SectionHeading'
-import type { BrandProfile } from '../../../types/brand'
-import { TalentMatchesTable } from './TalentMatchesTable'
-import { TalentSearchPanel } from './TalentSearchPanel'
+import { Card } from '../../../components/Card';
+import { SectionHeading } from '../../../components/SectionHeading';
+import type { BrandProfile } from '../../../types/brand';
+import { TalentMatchesTable } from './TalentMatchesTable';
+import { TalentSearchPanel } from './TalentSearchPanel';
 
 type TalentCompatibilityWidgetProps = {
-  activeBrandProfile: BrandProfile
-}
+  activeBrandProfile: BrandProfile;
+};
 
 export function TalentCompatibilityWidget({
   activeBrandProfile,
@@ -50,5 +50,5 @@ export function TalentCompatibilityWidget({
 
       <TalentMatchesTable activeBrandProfile={activeBrandProfile} />
     </Card>
-  )
+  );
 }

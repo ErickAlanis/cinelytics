@@ -1,8 +1,8 @@
 type SectionHeadingProps = {
-  title: string
-  subtitle?: string
-  className?: string
-}
+  title: string;
+  subtitle?: string;
+  className?: string;
+};
 
 export function SectionHeading({
   title,
@@ -19,5 +19,5 @@ export function SectionHeading({
         <p className="mt-2 text-sm text-slate-400">{subtitle}</p>
       ) : null}
     </div>
-  )
+  );
 }

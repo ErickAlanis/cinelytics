@@ -1,17 +1,17 @@
-import { Card } from '../../../components/Card'
-import { TableSkeleton } from '../../../components/TableSkeleton'
-import { WidgetHeader } from '../../../components/WidgetHeader'
-import { WidgetStateMessage } from '../../../components/WidgetStateMessage'
-import type { BrandProfile } from '../../../types/brand'
-import type { MovieItem } from '../../../types/content'
-import { getUpcomingReleaseRows } from '../../../utils/getUpcomingReleaseRows'
+import { Card } from '../../../components/Card';
+import { TableSkeleton } from '../../../components/TableSkeleton';
+import { WidgetHeader } from '../../../components/WidgetHeader';
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
+import type { BrandProfile } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
+import { getUpcomingReleaseRows } from '../../../utils/getUpcomingReleaseRows';
 
 type UpcomingReleasesWidgetProps = {
-  activeBrandProfile: BrandProfile
-  movies: MovieItem[]
-  isLoading: boolean
-  errorMessage: string | null
-}
+  activeBrandProfile: BrandProfile;
+  movies: MovieItem[];
+  isLoading: boolean;
+  errorMessage: string | null;
+};
 
 export function UpcomingReleasesWidget({
   activeBrandProfile,
@@ -19,7 +19,7 @@ export function UpcomingReleasesWidget({
   isLoading,
   errorMessage,
 }: UpcomingReleasesWidgetProps) {
-  const releaseRows = getUpcomingReleaseRows(movies, activeBrandProfile, 1)
+  const releaseRows = getUpcomingReleaseRows(movies, activeBrandProfile, 1);
 
   return (
     <Card id="upcoming-releases" className="col-span-12 p-8 lg:col-span-7">
@@ -52,7 +52,9 @@ export function UpcomingReleasesWidget({
             <tbody className="divide-y divide-slate-800/50">
               {releaseRows.map((movie) => (
                 <tr key={movie.id}>
-                  <td className="py-4 font-bold text-slate-50">{movie.title}</td>
+                  <td className="py-4 font-bold text-slate-50">
+                    {movie.title}
+                  </td>
 
                   <td className="py-4 text-xs text-slate-400">
                     {movie.releaseDate}
@@ -83,5 +85,5 @@ export function UpcomingReleasesWidget({
         </div>
       )}
     </Card>
-  )
+  );
 }
