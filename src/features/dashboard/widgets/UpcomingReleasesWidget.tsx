@@ -40,31 +40,48 @@ export function UpcomingReleasesWidget({
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-500">
-              <tr>
-                <th className="pb-4">Título</th>
-                <th className="pb-4">Fecha</th>
-                <th className="pb-4">Género</th>
-                <th className="pb-4">Fit Score</th>
-              </tr>
-            </thead>
+          <thead className="text-left text-xs uppercase tracking-wide text-slate-500">
+            <tr>
+              <th className="px-4 py-3">Título</th>
 
-            <tbody className="divide-y divide-slate-800/50">
+              {/* Desktop grande */}
+              <th className="hidden xl:table-cell px-4 py-3">Fecha</th>
+              <th className="hidden xl:table-cell px-4 py-3">Género</th>
+
+              {/* Intermedio */}
+              <th className="xl:hidden px-4 py-3">Detalle</th>
+
+              <th className="px-4 py-3 text-right">Fit</th>
+            </tr>
+          </thead>
+
+            <tbody>
               {releaseRows.map((movie) => (
-                <tr key={movie.id}>
-                  <td className="py-4 font-bold text-slate-50">
+                <tr
+                  key={movie.id}
+                  className="border-t border-slate-800 hover:bg-slate-900/40 transition"
+                >
+                  {/* Título */}
+                  <td className="px-4 py-3 font-semibold text-slate-100">
                     {movie.title}
                   </td>
 
-                  <td className="py-4 text-xs text-slate-400">
+                  {/* Desktop grande */}
+                  <td className="hidden xl:table-cell px-4 py-3 text-slate-400">
                     {movie.releaseDate}
                   </td>
 
-                  <td className="py-4 text-xs text-slate-400">
+                  <td className="hidden xl:table-cell px-4 py-3 text-slate-400">
                     {movie.genreLabel}
                   </td>
 
-                  <td className="py-4">
+                  {/* Intermedio (fusionado) */}
+                  <td className="xl:hidden px-4 py-3 text-slate-400">
+                    {movie.releaseDate} · {movie.genreLabel}
+                  </td>
+
+                  {/* Fit Score */}
+                  <td className="px-4 py-3 text-right">
                     <span
                       className={`rounded-lg px-3 py-1 text-[10px] font-black uppercase ${
                         movie.affinityPercentage >= 80
