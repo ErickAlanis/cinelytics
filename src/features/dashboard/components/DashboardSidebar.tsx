@@ -16,7 +16,7 @@ export function DashboardSidebar({
   onBrandChange,
 }: DashboardSidebarProps) {
   return (
-    <aside className="w-80 overflow-y-auto border-r border-slate-800/50 bg-[#030712]/80 p-6">
+    <div className="w-70 overflow-y-auto border-r border-slate-800/50 bg-[#030712]/80 p-6">
       <SidebarBrand />
 
       <div className="space-y-8">
@@ -27,6 +27,6 @@ export function DashboardSidebar({
         <BrandConfigurationSection brandProfile={activeBrandProfile} />
         <SidebarNavigation />
       </div>
-    </aside>
+    </div>
   )
 }

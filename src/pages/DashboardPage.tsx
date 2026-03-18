@@ -9,6 +9,7 @@ import { getBrandProfileById } from '../utils/getBrandProfileById'
 
 export function DashboardPage() {
   const [activeBrandId, setActiveBrandId] = useState<BrandId>(DEFAULT_BRAND_ID)
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
   const activeBrandProfile = useMemo(() => {
     const profile = getBrandProfileById(activeBrandId)
@@ -20,16 +21,25 @@ export function DashboardPage() {
     return profile
   }, [activeBrandId])
 
+  function handleBrandChange(brandId: BrandId) {
+    setActiveBrandId(brandId)
+    setIsMobileSidebarOpen(false)
+  }
+
   return (
     <DashboardShell
       sidebar={
         <DashboardSidebar
           activeBrandId={activeBrandId}
           activeBrandProfile={activeBrandProfile}
-          onBrandChange={setActiveBrandId}
+          onBrandChange={handleBrandChange}
         />
       }
-      mobileTopbar={<MobileTopbar />}
+      mobileTopbar={
+        <MobileTopbar onOpenSidebar={() => setIsMobileSidebarOpen(true)} />
+      }
+      isMobileSidebarOpen={isMobileSidebarOpen}
+      onCloseMobileSidebar={() => setIsMobileSidebarOpen(false)}
     >
       <DashboardContent activeBrandProfile={activeBrandProfile} />
     </DashboardShell>
