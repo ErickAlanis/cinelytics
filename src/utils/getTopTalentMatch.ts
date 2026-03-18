@@ -1,6 +1,11 @@
 import type { PopularTalentRow } from './mapPopularPersonToTalentRow';
 
-export function getTopTalentMatch(rows: PopularTalentRow[]) {
+type TopTalentMatch = {
+  actor: string;
+  affinityLabel: string;
+};
+
+export function getTopTalentMatch(rows: PopularTalentRow[]): TopTalentMatch {
   if (rows.length === 0) {
     return {
       actor: 'N/A',
