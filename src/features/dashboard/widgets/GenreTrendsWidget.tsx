@@ -2,7 +2,6 @@ import { Card } from '../../../components/Card';
 import { ChartSkeleton } from '../../../components/ChartSkeleton';
 import { WidgetHeader } from '../../../components/WidgetHeader';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
-import { GENRE_EMOJI } from '../../../constants/genreEmoji';
 import type { BrandProfile } from '../../../types/brand';
 import type { MovieItem } from '../../../types/content';
 import { getGenrePulse } from '../../../utils/getGenrePulse';

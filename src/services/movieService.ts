@@ -22,3 +22,23 @@ export async function getUpcomingMovies(
 
   return response.results;
 }
+
+export async function getMoviesReleasedOnDate(
+  releaseDate: string,
+  signal?: AbortSignal,
+): Promise<TmdbMovie[]> {
+  const response = await tmdbGet<TmdbPaginatedResponse<TmdbMovie>>(
+    '/discover/movie',
+    {
+      query: {
+        'primary_release_date.gte': releaseDate,
+        'primary_release_date.lte': releaseDate,
+        sort_by: 'popularity.desc',
+        page: 1,
+      },
+      signal,
+    },
+  );
+
+  return response.results;
+}
