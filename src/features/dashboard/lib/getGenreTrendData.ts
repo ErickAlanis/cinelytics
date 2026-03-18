@@ -1,8 +1,8 @@
-import type { BrandProfile, GenreId } from '../types/brand';
-import type { MovieItem } from '../types/content';
-import { calculateAffinityScore } from './calculateAffinityScore';
-import { getAffinityPercentage } from './getAffinityPercentage';
-import { getGenreNameById } from './getGenreNameById';
+import type { BrandProfile, GenreId } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
+import { calculateAffinityScore } from '../../brand/lib/calculateAffinityScore';
+import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
+import { getGenreNameById } from '../../../utils/getGenreNameById';
 
 type GenreTrendDatum = {
   genreId: GenreId;

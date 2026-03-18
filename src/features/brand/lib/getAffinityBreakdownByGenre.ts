@@ -1,7 +1,7 @@
-import type { BrandProfile, GenreId } from '../types/brand';
-import type { MovieItem } from '../types/content';
+import type { BrandProfile, GenreId } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
 import { calculateAffinityScore } from './calculateAffinityScore';
-import { getGenreNameById } from './getGenreNameById';
+import { getGenreNameById } from '../../../utils/getGenreNameById';
 
 export type AffinityBreakdownItem = {
   genreId: GenreId;

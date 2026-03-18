@@ -1,4 +1,4 @@
-import type { BrandProfile } from '../types/brand';
+import type { BrandProfile } from '../../../types/brand';
 import type { AffinityBreakdownItem } from './getAffinityBreakdownByGenre';
 
 function formatGenreList(genres: string[]): string {

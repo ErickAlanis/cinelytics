@@ -1,5 +1,5 @@
 import type { BrandProfile } from '../types/brand';
-import { getBrandKpiSnapshot } from './getBrandKpiSnapshot';
+import { getBrandKpiSnapshot } from '../features/brand/lib/getBrandKpiSnapshot';
 import { getGenreNameById } from './getGenreNameById';
 
 type AffinityMixData = {

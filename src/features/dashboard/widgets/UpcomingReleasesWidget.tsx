@@ -4,7 +4,7 @@ import { WidgetHeader } from '../../../components/WidgetHeader';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
 import type { MovieItem } from '../../../types/content';
-import { getUpcomingReleaseRows } from '../../../utils/getUpcomingReleaseRows';
+import { getUpcomingReleaseRows } from '../lib/getUpcomingReleaseRows';
 
 type UpcomingReleasesWidgetProps = {
   activeBrandProfile: BrandProfile;

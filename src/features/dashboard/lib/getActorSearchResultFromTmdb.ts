@@ -1,9 +1,9 @@
-import type { BrandProfile } from '../types/brand';
-import type { TmdbPerson, TmdbPersonMovieCredit } from '../types/tmdb';
-import { calculateAffinityScore } from './calculateAffinityScore';
+import type { BrandProfile } from '../../../types/brand';
+import type { TmdbPerson, TmdbPersonMovieCredit } from '../../../types/tmdb';
+import { calculateAffinityScore } from '../../brand/lib/calculateAffinityScore';
 import { getActorAffinityInsight } from './getActorAffinityInsight';
-import { getAffinityPercentage } from './getAffinityPercentage';
-import { getGenreNames } from './getGenreNames';
+import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
+import { getGenreNames } from '../../../utils/getGenreNames';
 import { getStrongGenreIdsFromCredits } from './getStrongGenreIdsFromCredits';
 
 type ActorSearchResult = {

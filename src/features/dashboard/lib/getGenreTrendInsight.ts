@@ -1,5 +1,5 @@
-import type { BrandProfile } from '../types/brand';
-import { getGenreNameById } from './getGenreNameById';
+import type { BrandProfile } from '../../../types/brand';
+import { getGenreNameById } from '../../../utils/getGenreNameById';
 
 export function getGenreTrendInsight(brandProfile: BrandProfile): string {
   const primaryGenre = getGenreNameById(brandProfile.primaryGenre);

@@ -1,6 +1,6 @@
-import type { BrandProfile, GenreId } from '../types/brand';
-import type { MovieItem } from '../types/content';
-import { getGenreNameById } from './getGenreNameById';
+import type { BrandProfile, GenreId } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
+import { getGenreNameById } from '../../../utils/getGenreNameById';
 
 export type GenrePulseItem = {
   genreId: GenreId;

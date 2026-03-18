@@ -1,5 +1,5 @@
-import type { GenreId } from '../types/brand';
-import type { TmdbPersonMovieCredit } from '../types/tmdb';
+import type { GenreId } from '../../../types/brand';
+import type { TmdbPersonMovieCredit } from '../../../types/tmdb';
 
 export function getStrongGenreIdsFromCredits(
   credits: TmdbPersonMovieCredit[],

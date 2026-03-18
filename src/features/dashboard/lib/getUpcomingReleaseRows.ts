@@ -1,11 +1,11 @@
-import type { BrandProfile } from '../types/brand';
-import type { MovieItem } from '../types/content';
-import { calculateAffinityScore } from './calculateAffinityScore';
-import { formatShortDate } from './formatShortDate';
-import { getAffinityPercentage } from './getAffinityPercentage';
-import { getGenreNames } from './getGenreNames';
+import type { BrandProfile } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
+import { calculateAffinityScore } from '../../brand/lib/calculateAffinityScore';
+import { formatShortDate } from '../../../utils/formatShortDate';
+import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
+import { getGenreNames } from '../../../utils/getGenreNames';
 import { getUpcomingMovieInsight } from './getUpcomingMovieInsight';
-import { isRelevantTitle } from './isRelevantTitle';
+import { isRelevantTitle } from '../../brand/lib/isRelevantTitle';
 
 type UpcomingReleaseRow = {
   id: number;

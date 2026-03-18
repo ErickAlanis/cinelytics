@@ -3,7 +3,7 @@ import { Card } from '../../../components/Card';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
 import type { TmdbPerson } from '../../../types/tmdb';
-import { getActorSearchResultFromTmdb } from '../../../utils/getActorSearchResultFromTmdb';
+import { getActorSearchResultFromTmdb } from '../lib/getActorSearchResultFromTmdb';
 import { getTmdbImageUrl } from '../../../utils/getTmdbImageUrl';
 import { useActorMovieCredits } from '../hooks/useActorMovieCredits';
 import { useDebouncedValue } from '../../../hooks/useDebouncedValue';

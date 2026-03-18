@@ -3,8 +3,8 @@ import { WidgetHeader } from '../../../components/WidgetHeader';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
 import type { MovieItem } from '../../../types/content';
-import { getAffinityBreakdownByGenre } from '../../../utils/getAffinityBreakdownByGenre';
-import { getAffinityMixInsight } from '../../../utils/getAffinityMixInsight';
+import { getAffinityBreakdownByGenre } from '../../brand/lib/getAffinityBreakdownByGenre';
+import { getAffinityMixInsight } from '../../brand/lib/getAffinityMixInsight';
 
 type AffinityMixWidgetProps = {
   activeBrandProfile: BrandProfile;

@@ -1,4 +1,4 @@
-import type { BrandProfile, GenreId } from '../types/brand';
+import type { BrandProfile, GenreId } from '../../../types/brand';
 
 export function calculateAffinityScore(
   titleGenreIds: GenreId[],

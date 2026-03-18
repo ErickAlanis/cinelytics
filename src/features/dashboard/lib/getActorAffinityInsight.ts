@@ -1,5 +1,5 @@
-import type { BrandProfile } from '../types/brand';
-import { getGenreNames } from './getGenreNames';
+import type { BrandProfile } from '../../../types/brand';
+import { getGenreNames } from '../../../utils/getGenreNames';
 
 export function getActorAffinityInsight(
   actorName: string,

@@ -7,7 +7,7 @@ import type { BrandProfile } from '../../../types/brand';
 import {
   mapPopularPersonToTalentRow,
   type PopularTalentRow,
-} from '../../../utils/mapPopularPersonToTalentRow';
+} from '../lib/mapPopularPersonToTalentRow';
 
 type UsePopularTalentMatchesResult = {
   rows: PopularTalentRow[];

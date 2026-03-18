@@ -1,5 +1,5 @@
-import type { BrandProfile } from '../types/brand';
-import type { MovieItem } from '../types/content';
+import type { BrandProfile } from '../../../types/brand';
+import type { MovieItem } from '../../../types/content';
 import { calculateAffinityScore } from './calculateAffinityScore';
 
 export function getAverageAffinityScore(

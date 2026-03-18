@@ -1,9 +1,9 @@
-import type { BrandProfile } from '../types/brand';
-import type { ActorItem } from '../types/content';
-import { calculateAffinityScore } from './calculateAffinityScore';
-import { getAffinityPercentage } from './getAffinityPercentage';
-import { getGenreNames } from './getGenreNames';
-import { getPopularityLabel } from './getPopularityLabel';
+import type { BrandProfile } from '../../../types/brand';
+import type { ActorItem } from '../../../types/content';
+import { calculateAffinityScore } from '../../brand/lib/calculateAffinityScore';
+import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
+import { getGenreNames } from '../../../utils/getGenreNames';
+import { getPopularityLabel } from '../../../utils/getPopularityLabel';
 
 type TalentMatchTone = 'success' | 'indigo' | 'amber';
 

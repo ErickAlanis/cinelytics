@@ -4,8 +4,8 @@ import { WidgetHeader } from '../../../components/WidgetHeader';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
 import type { MovieItem } from '../../../types/content';
-import { getGenrePulse } from '../../../utils/getGenrePulse';
-import { getGenrePulseInsight } from '../../../utils/getGenrePulseInsight';
+import { getGenrePulse } from '../lib/getGenrePulse';
+import { getGenrePulseInsight } from '../lib/getGenrePulseInsight';
 
 type GenreTrendsWidgetProps = {
   activeBrandProfile: BrandProfile;

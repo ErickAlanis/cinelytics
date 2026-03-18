@@ -1,4 +1,4 @@
-import type { BrandId } from '../types/brand';
+import type { BrandId } from '../../../types/brand';
 
 type BrandKpiSnapshot = {
   brandFitScore: number;

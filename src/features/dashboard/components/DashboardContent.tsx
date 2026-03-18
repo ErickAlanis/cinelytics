@@ -1,7 +1,7 @@
 import { MetricSkeleton } from '../../../components/MetricSkeleton';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
-import { getTopTalentMatch } from '../../../utils/getTopTalentMatch';
+import { getTopTalentMatch } from '../lib/getTopTalentMatch';
 import { useDashboardMovies } from '../hooks/useDashboardMovies';
 import { usePopularTalentMatches } from '../hooks/usePopularTalentMatches';
 import { AffinityMixWidget } from '../widgets/AffinityMixWidget';

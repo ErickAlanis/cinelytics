@@ -1,10 +1,10 @@
-import type { BrandProfile } from '../types/brand';
-import type { AnniversaryItem } from '../types/content';
-import { calculateAffinityScore } from './calculateAffinityScore';
-import { getAffinityPercentage } from './getAffinityPercentage';
+import type { BrandProfile } from '../../../types/brand';
+import type { AnniversaryItem } from '../../../types/content';
+import { calculateAffinityScore } from '../../brand/lib/calculateAffinityScore';
+import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
 import { getAnniversaryCampaignIdea } from './getAnniversaryCampaignIdea';
-import { getGenreNameById } from './getGenreNameById';
-import { isRelevantTitle } from './isRelevantTitle';
+import { getGenreNameById } from '../../../utils/getGenreNameById';
+import { isRelevantTitle } from '../../brand/lib/isRelevantTitle';
 
 type AnniversaryRow = {
   id: number;

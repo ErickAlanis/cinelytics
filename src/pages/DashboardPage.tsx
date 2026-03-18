@@ -5,7 +5,7 @@ import { DashboardShell } from '../features/dashboard/components/DashboardShell'
 import { DashboardSidebar } from '../features/dashboard/components/DashboardSidebar';
 import { MobileTopbar } from '../features/dashboard/components/MobileTopbar';
 import type { BrandId } from '../types/brand';
-import { getBrandProfileById } from '../utils/getBrandProfileById';
+import { getBrandProfileById } from '../features/brand/lib/getBrandProfileById';
 
 export function DashboardPage() {
   const [activeBrandId, setActiveBrandId] = useState<BrandId>(DEFAULT_BRAND_ID);

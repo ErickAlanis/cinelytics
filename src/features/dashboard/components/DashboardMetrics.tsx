@@ -1,10 +1,10 @@
 import { MetricCard } from '../../../components/MetricCard';
 import type { BrandProfile } from '../../../types/brand';
 import type { MovieItem } from '../../../types/content';
-import { getBrandFitScore } from '../../../utils/getBrandFitScore';
+import { getBrandFitScore } from '../../brand/lib/getBrandFitScore';
 import { getDominantGenre } from '../../../utils/getDominantGenre';
-import { getHighFitTitleCount } from '../../../utils/getHighFitTitleCount';
-import { getPrimaryGenreName } from '../../../utils/getPrimaryGenreName';
+import { getHighFitTitleCount } from '../../brand/lib/getHighFitTitleCount';
+import { getPrimaryGenreName } from '../../brand/lib/getPrimaryGenreName';
 
 type DashboardMetricsProps = {
   activeBrandProfile: BrandProfile;
