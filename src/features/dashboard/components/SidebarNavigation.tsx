@@ -1,10 +1,17 @@
+type SidebarNavigationProps = {
+  onNavigate?: () => void
+}
+
 const navItems = [
-  { label: 'Dashboard', icon: '▦', active: true },
-  { label: 'Tendencias', icon: '🔥', active: false },
-  { label: 'Estrenos', icon: '🎞', active: false },
+  { label: 'Dashboard', icon: '▦', href: '#dashboard-overview', active: true },
+  { label: 'Tendencias', icon: '🔥', href: '#genre-trends', active: false },
+  { label: 'Afinidad', icon: '◎', href: '#affinity-mix', active: false },
+  { label: 'Estrenos', icon: '🎞', href: '#upcoming-releases', active: false },
+  { label: 'Aniversarios', icon: '🕓', href: '#movie-anniversaries', active: false },
+  { label: 'Talento', icon: '★', href: '#talent-compatibility', active: false },
 ]
 
-export function SidebarNavigation() {
+export function SidebarNavigation({ onNavigate }: SidebarNavigationProps) {
   return (
     <nav>
       <h2 className="mb-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">
@@ -15,7 +22,8 @@ export function SidebarNavigation() {
         {navItems.map((item) => (
           <li key={item.label}>
             <a
-              href="#"
+              href={item.href}
+              onClick={onNavigate}
               className={
                 item.active
                   ? 'flex items-center gap-3 rounded-xl border border-indigo-500/20 bg-indigo-500/10 p-3 text-indigo-400'

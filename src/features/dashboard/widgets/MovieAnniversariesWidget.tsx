@@ -19,7 +19,7 @@ export function MovieAnniversariesWidget({
   )
 
   return (
-    <Card className="col-span-12 p-8 lg:col-span-5">
+    <Card id="movie-anniversaries" className="col-span-12 p-8 lg:col-span-5">
       <WidgetHeader title="Aniversarios Clave" />
 
       {anniversaryRows.length === 0 ? (

@@ -12,7 +12,7 @@ export function TalentCompatibilityWidget({
   activeBrandProfile,
 }: TalentCompatibilityWidgetProps) {
   return (
-    <Card className="mt-10 p-8 lg:p-10">
+    <Card id="talent-compatibility" className="mt-10 p-8 lg:p-10">
       <div className="mb-10 grid grid-cols-1 gap-8 xl:grid-cols-12 xl:gap-10">
         <div className="xl:col-span-7">
           <SectionHeading

@@ -15,7 +15,7 @@ export function AffinityMixWidget({
   const strokeDashoffset = getDonutStrokeOffset(mixData.brandFitScore)
 
   return (
-    <Card className="col-span-12 flex flex-col items-center p-8 lg:col-span-4">
+    <Card id="affinity-mix" className="col-span-12 flex flex-col items-center p-8 lg:col-span-4">
       <WidgetHeader title="Mix de Afinidad" />
 
       <div className="relative mb-8 h-48 w-48">

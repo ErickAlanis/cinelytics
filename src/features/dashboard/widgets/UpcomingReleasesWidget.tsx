@@ -22,7 +22,7 @@ export function UpcomingReleasesWidget({
   const releaseRows = getUpcomingReleaseRows(movies, activeBrandProfile, 1)
 
   return (
-    <Card className="col-span-12 p-8 lg:col-span-7">
+    <Card id="upcoming-releases" className="col-span-12 p-8 lg:col-span-7">
       <WidgetHeader title="Próximos Estrenos" />
 
       {isLoading ? (

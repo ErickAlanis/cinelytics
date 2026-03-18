@@ -22,7 +22,9 @@ export function DashboardContent({
 
   return (
     <>
-      <DashboardHeader activeBrandProfile={activeBrandProfile} />
+      <div id="dashboard-overview">
+        <DashboardHeader activeBrandProfile={activeBrandProfile} />
+      </div>
 
       {isLoading ? (
         <section className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -47,26 +49,38 @@ export function DashboardContent({
       )}
 
       <section className="mb-10 grid grid-cols-12 gap-6">
-        <GenreTrendsWidget
-          activeBrandProfile={activeBrandProfile}
-          movies={trendingMovies}
-          isLoading={isLoading}
-          errorMessage={errorMessage}
-        />
-        <AffinityMixWidget activeBrandProfile={activeBrandProfile} />
+        <div id="genre-trends" className="col-span-12 lg:col-span-8">
+          <GenreTrendsWidget
+            activeBrandProfile={activeBrandProfile}
+            movies={trendingMovies}
+            isLoading={isLoading}
+            errorMessage={errorMessage}
+          />
+        </div>
+
+        <div id="affinity-mix" className="col-span-12 lg:col-span-4">
+          <AffinityMixWidget activeBrandProfile={activeBrandProfile} />
+        </div>
       </section>
 
       <section className="grid grid-cols-12 gap-6">
-        <UpcomingReleasesWidget
-          activeBrandProfile={activeBrandProfile}
-          movies={upcomingMovies}
-          isLoading={isLoading}
-          errorMessage={errorMessage}
-        />
-        <MovieAnniversariesWidget activeBrandProfile={activeBrandProfile} />
+        <div id="upcoming-releases" className="col-span-12 lg:col-span-7">
+          <UpcomingReleasesWidget
+            activeBrandProfile={activeBrandProfile}
+            movies={upcomingMovies}
+            isLoading={isLoading}
+            errorMessage={errorMessage}
+          />
+        </div>
+
+        <div id="movie-anniversaries" className="col-span-12 lg:col-span-5">
+          <MovieAnniversariesWidget activeBrandProfile={activeBrandProfile} />
+        </div>
       </section>
 
-      <TalentCompatibilityWidget activeBrandProfile={activeBrandProfile} />
+      <div id="talent-compatibility">
+        <TalentCompatibilityWidget activeBrandProfile={activeBrandProfile} />
+      </div>
     </>
   )
 }

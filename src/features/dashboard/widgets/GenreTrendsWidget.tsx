@@ -25,7 +25,7 @@ export function GenreTrendsWidget({
   const insight = getGenreTrendInsight(activeBrandProfile)
 
   return (
-    <Card className="col-span-12 p-8 lg:col-span-8">
+    <Card id="genre-trends" className="col-span-12 p-8 lg:col-span-8">
       <WidgetHeader
         title="Tendencias por Género"
         action={<PillBadge>Live Signals</PillBadge>}

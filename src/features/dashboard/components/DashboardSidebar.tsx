@@ -8,15 +8,17 @@ type DashboardSidebarProps = {
   activeBrandId: BrandId
   activeBrandProfile: BrandProfile
   onBrandChange: (brandId: BrandId) => void
+  onNavigate?: () => void
 }
 
 export function DashboardSidebar({
   activeBrandId,
   activeBrandProfile,
   onBrandChange,
+  onNavigate,
 }: DashboardSidebarProps) {
   return (
-    <div className="w-70 overflow-y-auto border-r border-slate-800/50 bg-[#030712]/80 p-6">
+    <div className="w-80 overflow-y-auto">
       <SidebarBrand />
 
       <div className="space-y-8">
@@ -25,7 +27,7 @@ export function DashboardSidebar({
           onBrandChange={onBrandChange}
         />
         <BrandConfigurationSection brandProfile={activeBrandProfile} />
-        <SidebarNavigation />
+        <SidebarNavigation onNavigate={onNavigate} />
       </div>
     </div>
   )

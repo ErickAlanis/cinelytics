@@ -33,6 +33,7 @@ export function DashboardPage() {
           activeBrandId={activeBrandId}
           activeBrandProfile={activeBrandProfile}
           onBrandChange={handleBrandChange}
+          onNavigate={() => setIsMobileSidebarOpen(false)}
         />
       }
       mobileTopbar={
