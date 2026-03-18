@@ -10,12 +10,16 @@ type DashboardMetricsProps = {
   activeBrandProfile: BrandProfile;
   trendingMovies: MovieItem[];
   upcomingMovies: MovieItem[];
+  topActorMatch: string;
+  topActorAffinity: string;
 };
 
 export function DashboardMetrics({
   activeBrandProfile,
   trendingMovies,
   upcomingMovies,
+  topActorMatch,
+  topActorAffinity,
 }: DashboardMetricsProps) {
   const snapshot = getBrandKpiSnapshot(activeBrandProfile.id);
 
@@ -51,10 +55,8 @@ export function DashboardMetrics({
 
       <MetricCard
         label="Top Actor Match"
-        value={
-          <span className="text-xl md:text-2xl">{snapshot.topActorMatch}</span>
-        }
-        helperText={snapshot.topActorAffinity}
+        value={<span className="text-xl md:text-2xl">{topActorMatch}</span>}
+        helperText={topActorAffinity}
       />
     </section>
   );
