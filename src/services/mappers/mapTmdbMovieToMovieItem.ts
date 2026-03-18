@@ -1,5 +1,5 @@
-import type { MovieItem } from '../types/content';
-import type { TmdbMovie } from '../types/tmdb';
+import type { MovieItem } from '../../types/content';
+import type { TmdbMovie } from '../../types/tmdb';
 
 export function mapTmdbMovieToMovieItem(movie: TmdbMovie): MovieItem {
   return {

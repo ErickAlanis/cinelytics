@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getUpcomingMovies } from '../../../services/movieService';
 import type { MovieItem } from '../../../types/content';
-import { mapTmdbMovieToMovieItem } from '../../../utils/mapTmdbMovieToMovieItem';
+import { mapTmdbMovieToMovieItem } from '../../../services/mappers/mapTmdbMovieToMovieItem';
 
 type UseUpcomingMoviesResult = {
   movies: MovieItem[];

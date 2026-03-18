@@ -7,7 +7,7 @@ import { getAffinityPercentage } from '../../brand/lib/getAffinityPercentage';
 import { getAnniversaryInsight } from '../lib/getAnniversaryInsight';
 import { getAnniversaryTargetDates } from '../../../utils/getAnniversaryTargetDates';
 import { getGenreNames } from '../../../utils/getGenreNames';
-import { mapTmdbMovieToMovieItem } from '../../../utils/mapTmdbMovieToMovieItem';
+import { mapTmdbMovieToMovieItem } from '../../../services/mappers/mapTmdbMovieToMovieItem';
 
 type AnniversaryResultRow = {
   yearsAgo: 5 | 10 | 15 | 20;
