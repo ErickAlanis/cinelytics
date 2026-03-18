@@ -36,6 +36,6 @@ export function getDominantGenre(movies: MovieItem[]): DominantGenreResult {
   return {
     genreId: dominantGenreId,
     label: getGenreNameById(dominantGenreId),
-    shareLabel: `${share}% Share global`,
+    shareLabel: ` ${share}%`,
   };
 }
