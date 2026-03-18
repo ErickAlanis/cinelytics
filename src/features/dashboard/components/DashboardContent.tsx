@@ -68,7 +68,12 @@ export function DashboardContent({
           isLoading={isLoading}
           errorMessage={errorMessage}
         />
-        <AffinityMixWidget activeBrandProfile={activeBrandProfile} />
+        <AffinityMixWidget
+          activeBrandProfile={activeBrandProfile}
+          movies={trendingMovies}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
       </section>
 
       <section className="grid grid-cols-12 gap-6">

@@ -1,98 +1,98 @@
 import { Card } from '../../../components/Card';
 import { WidgetHeader } from '../../../components/WidgetHeader';
+import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
 import type { BrandProfile } from '../../../types/brand';
-import { getAffinityMixData } from '../../../utils/getAffinityMixData';
-import { getDonutStrokeOffset } from '../../../utils/getDonutStrokeOffset';
+import type { MovieItem } from '../../../types/content';
+import { getAffinityBreakdownByGenre } from '../../../utils/getAffinityBreakdownByGenre';
+import { getAffinityMixInsight } from '../../../utils/getAffinityMixInsight';
 
 type AffinityMixWidgetProps = {
   activeBrandProfile: BrandProfile;
+  movies: MovieItem[];
+  isLoading: boolean;
+  errorMessage: string | null;
 };
 
 export function AffinityMixWidget({
   activeBrandProfile,
+  movies,
+  isLoading,
+  errorMessage,
 }: AffinityMixWidgetProps) {
-  const mixData = getAffinityMixData(activeBrandProfile);
-  const strokeDashoffset = getDonutStrokeOffset(mixData.brandFitScore);
+  const breakdown = getAffinityBreakdownByGenre(movies, activeBrandProfile);
+  const insight = getAffinityMixInsight(activeBrandProfile, breakdown);
 
   return (
     <Card
       id="affinity-mix"
-      className="col-span-12 flex flex-col items-center p-8 lg:col-span-4"
+      className="col-span-12 flex flex-col p-8 lg:col-span-4"
     >
-      <WidgetHeader title="Mix de Afinidad" />
+      <WidgetHeader title="Contribución por Género" />
 
-      <div className="relative mb-8 h-48 w-48">
-        <svg className="h-full w-full -rotate-90">
-          <circle
-            cx="96"
-            cy="96"
-            r="80"
-            stroke="#1e293b"
-            strokeWidth="16"
-            fill="transparent"
-          />
-          <circle
-            cx="96"
-            cy="96"
-            r="80"
-            stroke="url(#affinity-gradient)"
-            strokeWidth="16"
-            fill="transparent"
-            strokeDasharray="502"
-            strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
-          />
-          <defs>
-            <linearGradient
-              id="affinity-gradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#6366f1" />
-              <stop offset="100%" stopColor="#a855f7" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-black text-slate-50">
-            {mixData.brandFitScore}%
-          </span>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            Brand Fit
-          </span>
-        </div>
-      </div>
-
-      <div className="w-full space-y-4">
-        <div className="flex justify-between text-xs font-bold text-slate-400">
-          <span>{mixData.descriptorLabel}</span>
-          <span>{mixData.descriptorLevel}</span>
-        </div>
-
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
-          <div
-            className="h-full bg-gradient-to-r from-indigo-500 to-purple-500"
-            style={{ width: `${mixData.brandFitScore}%` }}
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-2 pt-1">
-          <span className="rounded-lg bg-slate-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-300">
-            {mixData.primaryGenreLabel}
-          </span>
-          {mixData.secondaryGenreLabels.map((genreLabel) => (
-            <span
-              key={genreLabel}
-              className="rounded-lg bg-slate-800 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-slate-300"
-            >
-              {genreLabel}
-            </span>
+      {isLoading ? (
+        <div className="animate-pulse space-y-4">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div key={index}>
+              <div className="mb-2 flex items-center justify-between">
+                <div className="h-3 w-24 rounded bg-slate-800" />
+                <div className="h-3 w-10 rounded bg-slate-800" />
+              </div>
+              <div className="h-2 w-full rounded-full bg-slate-800" />
+            </div>
           ))}
+          <div className="mt-6 h-16 rounded-2xl border border-slate-800 bg-slate-900/40" />
         </div>
-      </div>
+      ) : errorMessage ? (
+        <WidgetStateMessage
+          title="No se pudo calcular el la contribución por género"
+          description={errorMessage}
+        />
+      ) : breakdown.length === 0 ? (
+        <WidgetStateMessage
+          title="No hay suficiente afinidad"
+          description="No encontramos una composición clara de géneros para la marca actual."
+        />
+      ) : (
+        <>
+          <div className="space-y-5">
+            {breakdown.map((item) => (
+              <div key={item.genreId}>
+                <div className="mb-2 flex items-center justify-between text-xs font-bold">
+                  <span
+                    className={
+                      item.isBrandGenre ? 'text-slate-200' : 'text-slate-400'
+                    }
+                  >
+                    {item.label}
+                  </span>
+                  <span
+                    className={
+                      item.isBrandGenre ? 'text-indigo-400' : 'text-slate-500'
+                    }
+                  >
+                    {item.contribution}%
+                  </span>
+                </div>
+
+                <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                  <div
+                    className={
+                      item.isBrandGenre
+                        ? 'h-full bg-gradient-to-r from-indigo-500 to-purple-500'
+                        : 'h-full bg-slate-600'
+                    }
+                    style={{ width: `${item.contribution}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-indigo-500/10 bg-indigo-500/5 p-4 text-sm italic text-indigo-300">
+            <strong>Insight:</strong> {insight}
+          </div>
+        </>
+      )}
     </Card>
   );
 }
