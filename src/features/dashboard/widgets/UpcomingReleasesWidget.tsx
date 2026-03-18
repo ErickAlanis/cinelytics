@@ -23,7 +23,10 @@ export function UpcomingReleasesWidget({
 
   return (
     <Card id="upcoming-releases" className="col-span-12 p-8 lg:col-span-7">
-      <WidgetHeader title="Próximos Estrenos" />
+      <WidgetHeader
+        title="Próximos Estrenos"
+        tooltipText="Lista de películas próximas cuyo perfil de géneros coincide con la marca. Sirve para identificar oportunidades de campañas, activaciones o storytelling conectado con lanzamientos cercanos."
+      />
 
       {isLoading ? (
         <TableSkeleton rows={4} columns={4} />
