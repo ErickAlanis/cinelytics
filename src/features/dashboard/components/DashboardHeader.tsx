@@ -1,5 +1,4 @@
 import { SectionHeading } from '../../../components/SectionHeading';
-import { StatusBadge } from '../../../components/StatusBadge';
 import type { BrandProfile } from '../../../types/brand';
 
 type DashboardHeaderProps = {
@@ -18,10 +17,6 @@ export function DashboardHeader({ activeBrandProfile }: DashboardHeaderProps) {
         className="max-w-2xl"
       />
 
-      {/* <StatusBadge className="self-start">
-        <span className="h-2 w-2 rounded-full bg-emerald-500" />
-        <span>Demo Review Ready</span>
-      </StatusBadge> */}
     </header>
   );
 }
