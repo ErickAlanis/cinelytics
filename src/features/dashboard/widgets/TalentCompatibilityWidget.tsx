@@ -1,15 +1,22 @@
 import { Card } from '../../../components/Card';
 import { SectionHeading } from '../../../components/SectionHeading';
 import type { BrandProfile } from '../../../types/brand';
+import type { PopularTalentRow } from '../lib/mapPopularPersonToTalentRow';
 import { TalentMatchesTable } from './TalentMatchesTable';
 import { TalentSearchPanel } from './TalentSearchPanel';
 
 type TalentCompatibilityWidgetProps = {
   activeBrandProfile: BrandProfile;
+  rows: PopularTalentRow[];
+  isLoading: boolean;
+  errorMessage: string | null;
 };
 
 export function TalentCompatibilityWidget({
   activeBrandProfile,
+  rows,
+  isLoading,
+  errorMessage,
 }: TalentCompatibilityWidgetProps) {
   return (
     <Card id="talent-compatibility" className="mt-10 p-8 lg:p-10">
@@ -48,7 +55,11 @@ export function TalentCompatibilityWidget({
         </div>
       </div>
 
-      <TalentMatchesTable activeBrandProfile={activeBrandProfile} />
+      <TalentMatchesTable
+        rows={rows}
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+      />
     </Card>
   );
 }

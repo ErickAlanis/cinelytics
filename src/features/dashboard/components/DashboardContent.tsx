@@ -86,7 +86,12 @@ export function DashboardContent({
         <MovieAnniversariesWidget activeBrandProfile={activeBrandProfile} />
       </section>
 
-      <TalentCompatibilityWidget activeBrandProfile={activeBrandProfile} />
+      <TalentCompatibilityWidget
+        activeBrandProfile={activeBrandProfile}
+        rows={talentRows}
+        isLoading={isTalentLoading}
+        errorMessage={talentErrorMessage}
+      />
     </>
   );
 }

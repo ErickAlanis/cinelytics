@@ -1,10 +1,11 @@
 import { TableSkeleton } from '../../../components/TableSkeleton';
 import { WidgetStateMessage } from '../../../components/WidgetStateMessage';
-import type { BrandProfile } from '../../../types/brand';
-import { usePopularTalentMatches } from '../hooks/usePopularTalentMatches';
+import type { PopularTalentRow } from '../lib/mapPopularPersonToTalentRow';
 
 type TalentMatchesTableProps = {
-  activeBrandProfile: BrandProfile;
+  rows: PopularTalentRow[];
+  isLoading: boolean;
+  errorMessage: string | null;
 };
 
 function getBadgeClass(tone: string) {
@@ -19,11 +20,10 @@ function getBadgeClass(tone: string) {
 }
 
 export function TalentMatchesTable({
-  activeBrandProfile,
+  rows,
+  isLoading,
+  errorMessage,
 }: TalentMatchesTableProps) {
-  const { rows, isLoading, errorMessage } =
-    usePopularTalentMatches(activeBrandProfile);
-
   if (isLoading) {
     return <TableSkeleton rows={4} columns={4} />;
   }
