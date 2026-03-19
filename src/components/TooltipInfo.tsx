@@ -16,7 +16,7 @@ export function TooltipInfo({ text, className = '' }: TooltipInfoProps) {
 
       <div
         role="tooltip"
-        className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2 rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-left text-[11px] font-medium normal-case tracking-normal text-slate-300 opacity-0 shadow-xl transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 w-56 -translate-x-1/2 rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-left text-[11px] font-medium normal-case tracking-normal text-slate-300 opacity-0 shadow-xl transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
       >
         {text}
       </div>

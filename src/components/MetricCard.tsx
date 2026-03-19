@@ -23,7 +23,7 @@ export function MetricCard({
 }: MetricCardProps) {
   return (
     <Card
-      className={`p-6 ${accentClassName} ${className}`}
+      className={`relative p-6 hover:z-20 focus-within:z-20 ${accentClassName} ${className}`}
       data-testid={dataTestId}
     >
       <div className="mb-2 flex items-center gap-2">
