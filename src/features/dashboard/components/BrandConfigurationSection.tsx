@@ -5,6 +5,22 @@ type BrandConfigurationSectionProps = {
   brandProfile: BrandProfile;
 };
 
+type GenreInfoCardProps = {
+  label: string;
+  value: string;
+};
+
+function GenreInfoCard({ label, value }: GenreInfoCardProps) {
+  return (
+    <div className="rounded-2xl border border-slate-800/70 bg-slate-900/40 px-4 py-3">
+      <div className="mb-1 text-[10px] font-black uppercase tracking-[0.18em] text-slate-500">
+        {label}
+      </div>
+      <div className="text-sm font-semibold text-slate-200">{value}</div>
+    </div>
+  );
+}
+
 export function BrandConfigurationSection({
   brandProfile,
 }: BrandConfigurationSectionProps) {
@@ -14,54 +30,21 @@ export function BrandConfigurationSection({
         Configuración de Marca
       </h2>
 
-      <div className="space-y-4 rounded-3xl border border-slate-800/60 bg-slate-900/30 p-4">
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="primary-genre"
-            className="text-[11px] font-semibold text-slate-500"
-          >
-            Género Primario
-          </label>
+      <div className="space-y-2 rounded-3xl border border-slate-800/60 bg-slate-900/25 p-4">
+        <GenreInfoCard
+          label="Género Primario"
+          value={getGenreNameById(brandProfile.primaryGenre)}
+        />
 
-          <input
-            id="primary-genre"
-            value={getGenreNameById(brandProfile.primaryGenre)}
-            readOnly
-            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
-          />
-        </div>
+        <GenreInfoCard
+          label="Género Secundario 1"
+          value={getGenreNameById(brandProfile.secondaryGenres[0])}
+        />
 
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="secondary-genre-1"
-            className="text-[11px] font-semibold text-slate-500"
-          >
-            Género Secundario 1
-          </label>
-
-          <input
-            id="secondary-genre-1"
-            value={getGenreNameById(brandProfile.secondaryGenres[0])}
-            readOnly
-            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label
-            htmlFor="secondary-genre-2"
-            className="text-[11px] font-semibold text-slate-500"
-          >
-            Género Secundario 2
-          </label>
-
-          <input
-            id="secondary-genre-2"
-            value={getGenreNameById(brandProfile.secondaryGenres[1])}
-            readOnly
-            className="rounded-xl border border-slate-800 bg-slate-900 p-3 text-sm text-slate-300 outline-none"
-          />
-        </div>
+        <GenreInfoCard
+          label="Género Secundario 2"
+          value={getGenreNameById(brandProfile.secondaryGenres[1])}
+        />
       </div>
     </section>
   );
