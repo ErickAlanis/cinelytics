@@ -9,6 +9,7 @@ type MetricCardProps = PropsWithChildren<{
   accentClassName?: string;
   tooltipText?: string;
   className?: string;
+  dataTestId?: string;
 }>;
 
 export function MetricCard({
@@ -18,9 +19,13 @@ export function MetricCard({
   accentClassName = '',
   tooltipText,
   className = '',
+  dataTestId,
 }: MetricCardProps) {
   return (
-    <Card className={`p-6 ${accentClassName} ${className}`}>
+    <Card
+      className={`p-6 ${accentClassName} ${className}`}
+      data-testid={dataTestId}
+    >
       <div className="mb-2 flex items-center gap-2">
         <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
           {label}

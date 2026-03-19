@@ -45,6 +45,7 @@ export function DashboardMetrics({
         value={primaryGenreName}
         helperText={`Tendencia actual: ${dominantGenre.label} · ${dominantGenre.shareLabel}`}
         tooltipText="Género principal definido para la marca. Se usa como base para calcular afinidad con tendencias actuales."
+        dataTestId="metric-brand-narrative-profile"
       />
 
       <MetricCard
